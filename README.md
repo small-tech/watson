@@ -6,7 +6,7 @@ Watson is an application template for elementary OS 6 (Odin).
 
 Watson will get you up and running with scaffolding that compiles on elementary OS 6 (Odin) and follows elementary OS 6 best practices (e.g., [code style](https://docs.elementary.io/develop/writing-apps/code-style)). Once you’ve made it your own, you can submit your app for inclusion in the [AppCenter](https://docs.elementary.io/develop/appcenter/publishing-requirements) as a curated app.
 
-_(As part of that process, you should replace the contents of this README with your own. After you’ve read it and followed the instructions herein, that is.)_
+_(As part of that process, you should replace the contents of this README with your own. After you’ve read it and followed the instructions in it, that is.)_
 
 ## What Watson is (and what Watson is not).
 

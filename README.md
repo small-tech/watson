@@ -86,7 +86,8 @@ Once you run Watson, the following badge will lead to your app on the AppCenter 
   - [LICENSE](https://docs.elementary.io/develop/writing-apps/our-first-app#legal-stuff) file for the GNU GPL license.
 
   - [Meson configuration files](https://docs.elementary.io/develop/writing-apps/our-first-app/the-build-system) and a build script.
-  - Set up to support [translations](https://docs.elementary.io/develop/writing-apps/our-first-app/translations)
+
+  - [Support for translations](https://docs.elementary.io/develop/writing-apps/our-first-app/translations) with [GNU gettext via Meson](https://mesonbuild.com/Localisation.html).
 
   - [App icon](https://docs.elementary.io/develop/writing-apps/our-first-app/icons)
 
@@ -94,6 +95,7 @@ Once you run Watson, the following badge will lead to your app on the AppCenter 
 
   - The recommended [EditorConfig](https://docs.elementary.io/develop/writing-apps/code-style#editorconfig) for elementary OS Code and other compatible editors for enforcing the suggested [code style](https://docs.elementary.io/develop/writing-apps/code-style).
 
+  - _.gitignore_ file that ignores the _build_ and _.flatpak-builder_ directories.
 
 ## What’s _not_ included?
 

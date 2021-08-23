@@ -1,0 +1,22 @@
+app-id: com.github.{ORG}.{APP}
+
+runtime: io.elementary.Platform
+runtime-version: '6'
+sdk: io.elementary.Sdk
+
+command: com.github.{ORG}.{APP}
+
+finish-args:
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+
+  # Needed to read prefer-color-scheme with Granite.Settings
+  - '--system-talk-name=org.freedesktop.Accounts'
+
+modules:
+  - name: {APP}
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: .

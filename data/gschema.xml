@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/com/github/{ORG}/{APP}" id="com.github.{ORG}.{APP}">
+    <key name="switch-state" type="b">
+      <default>false</default>
+      <summary>The state of the switch</summary>
+      <description>Whether the switch is toggled</description>
+    </key>
+  </schema>
+</schemalist>

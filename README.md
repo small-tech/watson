@@ -41,7 +41,7 @@ Open up Terminal and:
 
     > The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). [I have raised my concerns about this](https://github.com/elementary/appcenter/discussions/1622) and hope that this decision will be reviewed going forward. – [Aral](https://ar.al)
 
-    It will also commit those changes and rewrite your git remote so that `origin` points to your repository instead of to the Watson repository.
+    It will also commit recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
 
 2. Create your repository on GitHub (if you haven’t already) and push your changes:
 

@@ -1,3 +1,3 @@
 src/Application.vala
-data/{APP}.desktop.in
-data/{APP}.appdata.xml.in
+data/{GITHUB.APP}.desktop.in
+data/{GITHUB.APP}.appdata.xml.in

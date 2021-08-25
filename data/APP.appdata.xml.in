@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright ⓒ {COPYRIGHT.YEAR} to present, {COPYRIGHT.NAME} <${COPYRIGHT.EMAIL}> -->
 <component type="desktop">
-  <id>com.github.{ORG}.{APP}</id>
+  <id>com.github.{GITHUB.ORG}.{GITHUB.APP}</id>
   <metadata_license>CC0</metadata_license>
   <name>{APP.NAME}</name>
-  <summary>{APP.DESCRIPTION</summary>
+  <summary>{APP.DESCRIPTION}</summary>
   <description>
     <p>{APP.DESCRIPTION}</p>
   </description>

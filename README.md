@@ -37,7 +37,7 @@ Open up Terminal and:
 
     Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers. It will delete itself once it’s done.
 
-    > The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). [I have raised my concerns about this](https://github.com/elementary/appcenter/discussions/1622) and hope that this decision will be reviewed going forward. – [Aral](https://ar.al)
+    > The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). I have raised my concerns about this both from a legal perspective [as it is a trademark violation](https://github.com/elementary/appcenter/discussions/1622) and, more generally, [because it gives Microsoft a de-facto veto right on what apps are allowed on elementary OS](https://github.com/elementary/houston/issues/436#issuecomment-905554984). I do hope that this decision will be reviewed going forward. – [Aral](https://ar.al)
 
     It will also commit recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
 

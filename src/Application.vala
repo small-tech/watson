@@ -6,7 +6,7 @@
 public class App : Gtk.Application {
     public App () {
         Object(
-            application_id: "com.github.{ORG}.{APP}",
+            application_id: "com.github.{GITHUB.ORG}.{GITHUB.APP}",
             flags: ApplicationFlags.FLAGS_NONE
         );
     }
@@ -15,7 +15,7 @@ public class App : Gtk.Application {
         var main_window = new Gtk.ApplicationWindow (this) {
             default_height = 300,
             default_width = 300,
-            title = _("{APP}")
+            title = _("{APP.NAME}")
         };
 
         main_window.show_all ();

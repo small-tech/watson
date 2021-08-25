@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/{ORG}/{APP}" id="com.github.{ORG}.{APP}">
+  <schema path="/com/github/{GITHUB.ORG}/{GITHUB.APP}" id="com.github.{GITHUB.ORG}.{GITHUB.APP}">
     <key name="switch-state" type="b">
       <default>false</default>
       <summary>The state of the switch</summary>

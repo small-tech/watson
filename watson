@@ -46,8 +46,11 @@ copyright_details=$(zenity --forms --title="Watson: Copyright details)" --text="
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"
 IFS='|' read -ra app_details <<< "${app_details_pipe_separated}"
 
-organisation=${github_details[0]}
-app=${github_details[1]}
+# We replace any dashes in the desktop entry names with underscores for
+# compatibility with D-Bus names. See:
+# https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s02.html
+organisation=${github_details[0]//'-'/'_'}
+app=${github_details[1]//'-'/'_'}
 
 app_name=${app_details[0]}
 app_generic_name=${app_details[1]}
@@ -63,3 +66,5 @@ echo "App Description: ${app_description}"
 echo "App tool-tip text (comment): ${app_comment}"
 echo "App category(ies): ${app_categories}"
 echo "App Keywords: ${app_keywords}"
+
+files=('data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml')

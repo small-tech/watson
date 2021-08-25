@@ -15,7 +15,7 @@ finish-args:
   - '--system-talk-name=org.freedesktop.Accounts'
 
 modules:
-  - name: {APP}
+  - name: {GITHUB.APP}
     buildsystem: meson
     sources:
       - type: dir

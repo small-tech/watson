@@ -1,3 +1,65 @@
 #!/usr/bin/env bash
 
-echo 'Watson – todo.'
+######################################################################
+#
+# Watson version 1.0
+#
+# “It’s elementary, my dear…”
+#
+# Helps you set up your new elementary OS Vala app.
+#
+# For details, please see:
+# https://github.com/small-tech/watson
+#
+# Follows the Community Bash Style Guide.
+# https://github.com/azet/community_bash_style_guide
+#
+# Copyright ⓒ 2021-present Aral Balkan (https://ar.al)
+# Small Technology Foundation (https://small-tech.org)
+#
+# Like this? Fund us!
+# https://small-tech.org/fund-us
+#
+# Released under GNU GPL version 3.0.
+#
+######################################################################
+
+set -eu -o pipefail
+
+# Constants
+
+readonly copyright_year=$(date '+%Y')
+
+# Github details.
+github_details_pipe_separated=$(zenity --forms --title="Watson: GitHub Details" --text="\n    Enter your GitHub organisation and app from your GitHub URL.    \n\n    https://github.com/‹Organisaton›/‹App›" --add-entry="Organisation:" --add-entry="App:")
+
+# Get app details (1/2).
+app_details_pipe_separated=$(zenity --forms --title="Watson: App Details (1/2)" --text="\n    These details are used to customise several files in your project.    " --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
+
+# Get app details (2/2) – categories (multi-select list).
+app_categories=$(zenity --list --multiple --separator=";" --title="Watson: App Details (2/2)" --text="\n    Choose the category(ies) your app falls into.    " --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
+
+# Get copyright details.
+copyright_details=$(zenity --forms --title="Watson: Copyright details)" --text="\n    Please enter your details for the copyright message.    " --add-entry="Name" --add-entry="Email")
+
+# Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
+IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"
+IFS='|' read -ra app_details <<< "${app_details_pipe_separated}"
+
+organisation=${github_details[0]}
+app=${github_details[1]}
+
+app_name=${app_details[0]}
+app_generic_name=${app_details[1]}
+app_description=${app_details[2]}
+app_comment=${app_details[3]}
+app_keywords=${app_details[4]}
+
+echo "Organisation: ${organisation}"
+echo "App: ${app}"
+echo "App Name: ${app_name}"
+echo "App Generic Name: ${app_generic_name}"
+echo "App Description: ${app_description}"
+echo "App tool-tip text (comment): ${app_comment}"
+echo "App category(ies): ${app_categories}"
+echo "App Keywords: ${app_keywords}"

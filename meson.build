@@ -1,4 +1,4 @@
-project('com.github.{ORG}.{APP}', 'vala', 'c')
+project('com.github.{GITHUB.ORG}.{GITHUB.APP}', 'vala', 'c')
 
 i18n = import('i18n')
 gnome = import('gnome')
@@ -27,7 +27,7 @@ executable(
 
 # Translate and install our .desktop file.
 i18n.merge_file(
-    input: 'data' / '{APP}.desktop.in',
+    input: 'data' / '{GITHUB.APP}.desktop.in',
     output: meson.project_name() + '.desktop',
     po_dir: meson.source_root() / 'po',
     type: 'desktop',
@@ -37,7 +37,7 @@ i18n.merge_file(
 
 # Translate and install our .appdata file.
 i18n.merge_file(
-    input: 'data' / '{APP}.appdata.xml.in',
+    input: 'data' / '{GITHUB.APP}.appdata.xml.in',
     output: meson.project_name() + '.appdata.xml',
     po_dir: meson.source_root() / 'po',
     install: true,

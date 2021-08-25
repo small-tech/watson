@@ -1,10 +1,10 @@
-app-id: com.github.{ORG}.{APP}
+app-id: com.github.{GITHUB.ORG}.{GITHUB.APP}
 
 runtime: io.elementary.Platform
 runtime-version: '6'
 sdk: io.elementary.Sdk
 
-command: com.github.{ORG}.{APP}
+command: com.github.{GITHUB.ORG}.{GITHUB.APP}
 
 finish-args:
   - '--share=ipc'

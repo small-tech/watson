@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name={APP.NAME}
-GenericName={APP.GENERIC.NAME}
+GenericName={APP.GENERIC_NAME}
 Comment={APP.COMMENT}
 Categories={APP.CATEGORIES}
 Exec=com.github.{GITHUB.ORG}.{GITHUB.APP}

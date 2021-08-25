@@ -80,17 +80,17 @@ files=('com.github.ORG.APP.yml' 'meson.build' 'src/Application.vala' 'data/APP.a
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do
-  sed "s/{GITHUB.ORG}/${github_organisation}/g" file
-  sed "s/{GITHUB.APP}/${github_app}/g" file
-  sed "s/{APP.NAME}/${app_name}/g" file
-  sed "s/{APP.GENERIC_NAME}/${app_generic_name}/g" file
-  sed "s/{APP.DESCRIPTION}/${app_description}/g" file
-  sed "s/{APP.COMMENT}/${app_comment}/g" file
-  sed "s/{APP.CATEGORIES}/${app_categories}/g" file
-  sed "s/{APP.KEYWORDS}/${app_keywords}/g" file
-  sed "s/{COPYRIGHT.YEAR}/${copyright_year}/g" file
-  sed "s/{COPYRIGHT.NAME}/${copyright_name}/g" file
-  sed "s/{COPYRIGHT.EMAIL}/${copyright_email}/g" file
+  sed "s/{GITHUB.ORG}/${github_organisation}/g" "${file}"
+  sed "s/{GITHUB.APP}/${github_app}/g" "${file}"
+  sed "s/{APP.NAME}/${app_name}/g" "${file}"
+  sed "s/{APP.GENERIC_NAME}/${app_generic_name}/g" "${file}"
+  sed "s/{APP.DESCRIPTION}/${app_description}/g" "${file}"
+  sed "s/{APP.COMMENT}/${app_comment}/g" "${file}"
+  sed "s/{APP.CATEGORIES}/${app_categories}/g" "${file}"
+  sed "s/{APP.KEYWORDS}/${app_keywords}/g" "${file}"
+  sed "s/{COPYRIGHT.YEAR}/${copyright_year}/g" "${file}"
+  sed "s/{COPYRIGHT.NAME}/${copyright_name}/g" "${file}"
+  sed "s/{COPYRIGHT.EMAIL}/${copyright_email}/g" "${file}"
 done
 
 # Rename files.

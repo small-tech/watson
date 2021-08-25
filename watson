@@ -45,12 +45,15 @@ copyright_details=$(zenity --forms --title="Watson: Copyright details)" --text="
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"
 IFS='|' read -ra app_details <<< "${app_details_pipe_separated}"
+IFS='|' read -ra copyright_details <<< "${copyright_details_pipe_separated}"
 
 # We replace any dashes in the desktop entry names with underscores for
 # compatibility with D-Bus names. See:
 # https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s02.html
-organisation=${github_details[0]//'-'/'_'}
-app=${github_details[1]//'-'/'_'}
+#
+# TODO: Also handle edge case of names that begin with numbers? (Prefix with an underscore.)
+github_organisation=${github_details[0]//'-'/'_'}
+github_app=${github_details[1]//'-'/'_'}
 
 app_name=${app_details[0]}
 app_generic_name=${app_details[1]}
@@ -58,13 +61,43 @@ app_description=${app_details[2]}
 app_comment=${app_details[3]}
 app_keywords=${app_details[4]}
 
-echo "Organisation: ${organisation}"
-echo "App: ${app}"
-echo "App Name: ${app_name}"
-echo "App Generic Name: ${app_generic_name}"
-echo "App Description: ${app_description}"
+copyright_name=${copyright_details[0]}
+copyright_email=${copyright_details[1]}
+
+echo "Organisation: ${github_organisation}"
+echo "App: ${github_app}"
+echo "App name: ${app_name}"
+echo "App generic name: ${app_generic_name}"
+echo "App description: ${app_description}"
 echo "App tool-tip text (comment): ${app_comment}"
 echo "App category(ies): ${app_categories}"
-echo "App Keywords: ${app_keywords}"
+echo "App keywords: ${app_keywords}"
+echo "Copyright name: ${copyright_name}"
+echo "Copyright email ${copyright email}"
 
-files=('data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml')
+# This is the list of files to carry out substituions in.
+files=('com.github.ORG.APP.yml' 'meson.build' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
+
+# Carry out substitutions in configuration files and source code.
+for file in "${files[@]}"; do
+  sed "s/{GITHUB.ORG}/${github_organisation}/g" file
+  sed "s/{GITHUB.APP}/${github_app}/g" file
+  sed "s/{APP.NAME}/${app_name}/g" file
+  sed "s/{APP.GENERIC_NAME}/${app_generic_name}/g" file
+  sed "s/{APP.DESCRIPTION}/${app_description}/g" file
+  sed "s/{APP.COMMENT}/${app_comment}/g" file
+  sed "s/{APP.CATEGORIES}/${app_categories}/g" file
+  sed "s/{APP.KEYWORDS}/${app_keywords}/g" file
+  sed "s/{COPYRIGHT.YEAR}/${copyright_year}/g" file
+  sed "s/{COPYRIGHT.NAME}/${copyright_name}/g" file
+  sed "s/{COPYRIGHT.EMAIL}/${copyright_email}/g" file
+done
+
+# Rename files.
+# TODO
+
+# Delete git repository.
+# TODO
+
+# Initialise new git repository, set its remote, and make an initial commit.
+# TODO

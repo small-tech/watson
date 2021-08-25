@@ -32,12 +32,10 @@ Open up Terminal and:
 1. Initialise your project:
 
     ```shell
-    ./watson your-github-account-name/your-github-project-name
+    ./watson
     ```
 
-    So, for example, if you’re going to store your project on GitHub at https://github.com/small-tech/comet, you would enter: `./init small-tech/comet`
-
-    Watson will update all the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project and then delete itself once it’s done.
+    Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers. It will delete itself once it’s done.
 
     > The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). [I have raised my concerns about this](https://github.com/elementary/appcenter/discussions/1622) and hope that this decision will be reviewed going forward. – [Aral](https://ar.al)
 

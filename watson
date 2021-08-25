@@ -40,7 +40,7 @@ app_details_pipe_separated=$(zenity --forms --title="Watson: App Details (1/2)" 
 app_categories=$(zenity --list --multiple --separator=";" --title="Watson: App Details (2/2)" --text="\n    Choose the category(ies) your app falls into.    " --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
 
 # Get copyright details.
-copyright_details=$(zenity --forms --title="Watson: Copyright details)" --text="\n    Please enter your details for the copyright message.    " --add-entry="Name" --add-entry="Email")
+copyright_details_pipe_separated=$(zenity --forms --title="Watson: Copyright details)" --text="\n    Please enter your details for the copyright message.    " --add-entry="Name" --add-entry="Email")
 
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"

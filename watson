@@ -73,7 +73,7 @@ echo "App tool-tip text (comment): ${app_comment}"
 echo "App category(ies): ${app_categories}"
 echo "App keywords: ${app_keywords}"
 echo "Copyright name: ${copyright_name}"
-echo "Copyright email ${copyright email}"
+echo "Copyright email ${copyright_email}"
 
 # This is the list of files to carry out substituions in.
 files=('com.github.ORG.APP.yml' 'meson.build' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')

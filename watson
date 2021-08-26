@@ -24,7 +24,25 @@
 #
 ######################################################################
 
-set -eu -o pipefail
+# set -eu -o pipefail
+
+current_step=0
+steps=('GitHub Details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parsing responses' 'Performing substitutions' 'Renaming Files' 'Recreating Git Repository' 'Done')
+
+# Trap errors and handle them gracefully.
+#
+# $1: Line number of error.
+# $2: Exit code of command that failed.
+function handle_error () {
+  printf "Step %d (%s)" $((${current_step}+1)) "${steps[${current_step}]}"
+  if ((current_step < 4)); then
+    printf " cancelled.\n"
+  else
+    printf " failed on line $1.\n"
+  fi
+  exit $2
+}
+trap 'handle_error ${LINENO} $? ' ERR
 
 # Constants
 
@@ -33,14 +51,22 @@ readonly copyright_year=$(date '+%Y')
 # Github details.
 github_details_pipe_separated=$(zenity --forms --width=600 --height=360 --title="Watson" --text="\n  <big><u>GitHub details</u></big>  \n\n  <i>https://github.com/<big>‹Organisaton›</big>/<big>‹App›</big></i>\n" --add-entry="Organisation:" --add-entry="App:")
 
+current_step=$(( current_step + 1 ))
+
 # Get app details (1/2).
 app_details_pipe_separated=$(zenity --forms --height=420 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
+
+current_step=$(( current_step + 1 ))
 
 # Get app details (2/2) – categories (multi-select list).
 app_categories=$(zenity --list --width=800 --height=720 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
 
+current_step=$(( current_step + 1 ))
+
 # Get copyright details.
 copyright_details_pipe_separated=$(zenity --forms --width=600 --height=360 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
+
+current_step=$(( current_step + 1 ))
 
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"
@@ -77,6 +103,8 @@ echo "App keywords: ${app_keywords}"
 echo "Copyright name: ${copyright_name}"
 echo "Copyright email ${copyright_email}"
 
+current_step=$(( current_step + 1 ))
+
 # This is the list of files to carry out substituions in.
 files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
 
@@ -95,12 +123,16 @@ for file in "${files[@]}"; do
   sed -i "s/{COPYRIGHT.EMAIL}/${copyright_email}/g" "${file}"
 done
 
+current_step=$(( current_step + 1 ))
+
 # Rename files.
 mv _README.md README.md
 mv _CHANGELOG.md CHANGELOG.md
 mv com.github.ORG.APP.yml "com.github.${GITHUB.ORG}.${GITHUB.APP}.yml"
 mv data/APP.appdata.xml.in "data/${GITHUB.APP}.appdata.xml.in"
 mv data/APP.desktop.in "data/${GITHUB.APP}.desktop.in"
+
+current_step=$(( current_step + 1 ))
 
 # Delete existing git repository and set up the one specific to the app.
 # TODO: This requires a newer version of git than that which ships on elementary OS 6.
@@ -110,6 +142,8 @@ git init
 git remote add origin "git@github.com:${github_organisation_original}/${github_app_original}.git"
 git add --all
 git commit -m "Initial add"
+
+current_step=$(( current_step + 1 ))
 
 # That’s it!
 

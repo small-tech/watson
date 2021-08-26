@@ -1,10 +1,73 @@
-# Watson
+# {APP.NAME}
 
-> “It’s elementary…”
+{APP.Description}
+
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.{GITHUB.ORG}.{GITHUB.APP}])
+
+## System requirements
+
+  - Elementary OS 6 (Odin)
+
+## Developer notes
+
+### Conventions
+
+This project is written in [Vala](https://valadoc.org/) and follows the following elementary OS guidelines:
+
+  - [Human Interface Guidelines](https://docs.elementary.io/hig/)
+  - [Developer Guidelines](https://docs.elementary.io/develop/)
+  - [Coding style](https://docs.elementary.io/develop/writing-apps/code-style)
+
+Please take some time to familiarise yourself with those documents before continuing.
+
+### Tasks
+
+#### Build
+
+The build task uses meson and ninja.
+
+```shell
+task/build
+```
+
+#### Install
+
+Note that you must install the app for settings-related features to work. Most often, you will use the run task, below.
+
+```shell
+task/install
+```
+
+#### Run
+
+This task builds and installs your app and runs the executable.
+
+```shell
+task/run
+```
+
+#### Pack
+
+This task creates a Flatpak distribution.
+
+```shell
+task/pack
+```
+
+## Continuous integration
+
+Learn how to set up [continuous integration](https://docs.elementary.io/develop/writing-apps/our-first-app/continuous-integration) and review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before [submitting the app](https://developer.elementary.io/).
+
+## Copyright and license
+
+Copyright &copy; {COPYRIGHT.YEAR}-present {COPYRIGHT.NAME}
+Licensed under GNU GPL version 3.0.
 
 Watson is an application template for elementary OS 6 (Odin).
 
 Watson will get you up and running with scaffolding that compiles on elementary OS 6 (Odin) and follows elementary OS 6 best practices (e.g., [code style](https://docs.elementary.io/develop/writing-apps/code-style)). Once you’ve made it your own, you can submit your app for inclusion in the [AppCenter](https://docs.elementary.io/develop/appcenter/publishing-requirements) as a curated app.
+
+_(As part of that process, you should replace the contents of this README with your own. After you’ve read it and followed the instructions in it, that is.)_
 
 ## What Watson is (and what Watson is not).
 
@@ -33,13 +96,11 @@ Open up Terminal and:
     ./watson
     ```
 
-    Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers.
+    Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers. It will delete itself once it’s done.
 
     > The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). I have raised my concerns about this both from a legal perspective [as it is a trademark violation](https://github.com/elementary/appcenter/discussions/1622) and, more generally, [because it gives Microsoft a de-facto veto right on what apps are allowed on elementary OS](https://github.com/elementary/houston/issues/436#issuecomment-905554984). I do hope that this decision will be reviewed going forward. – [Aral](https://ar.al)
 
-    It will also replace this README and the CHANGELOG with your application’s versions, recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
-
-    Watson will delete itself once it’s done, leaving only your project behind.
+    It will also commit recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
 
 2. Create your repository on GitHub (if you haven’t already) and push your changes:
 
@@ -54,6 +115,12 @@ Now you can customise the template further to create your app, knowing you have 
 Before moving on, make sure you learn how to set up [continuous integration](https://docs.elementary.io/develop/writing-apps/our-first-app/continuous-integration) and review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before you [submit your app](https://developer.elementary.io/).
 
 Enjoy and here’s hoping Watson will make it easier for you to start building excellent apps for elementary OS.
+
+## Get it on AppCenter
+
+Once you run Watson, the following badge will lead to your app on the AppCenter (for when you’ve published it):
+
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.USER.REPO)
 
 ## What is included?
 

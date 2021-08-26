@@ -52,8 +52,10 @@ IFS='|' read -ra copyright_details <<< "${copyright_details_pipe_separated}"
 # https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s02.html
 #
 # TODO: Also handle edge case of names that begin with numbers? (Prefix with an underscore.)
-github_organisation=${github_details[0]//'-'/'_'}
-github_app=${github_details[1]//'-'/'_'}
+github_organisation_original=${github_details[0]}
+github_app_original=${github_details[1]}
+github_organisation=${github_organisation_original//'-'/'_'}
+github_app=${github_app_original//'-'/'_'}
 
 app_name=${app_details[0]}
 app_generic_name=${app_details[1]}
@@ -94,10 +96,20 @@ for file in "${files[@]}"; do
 done
 
 # Rename files.
-# TODO
+mv _README.md README.md
+mv _CHANGELOG.md CHANGELOG.md
+mv com.github.ORG.APP.yml "com.github.${GITHUB.ORG}.${GITHUB.APP}.yml"
+mv data/APP.appdata.xml.in "data/${GITHUB.APP}.appdata.xml.in"
+mv data/APP.desktop.in "data/${GITHUB.APP}.desktop.in"
 
-# Delete git repository.
-# TODO
+# Delete existing git repository and set up the one specific to the app.
+# TODO: This requires a newer version of git than that which ships on elementary OS 6.
+# ===== Make sure we install this previous to this step.
+rm -rf .git
+git init
+git remote add origin "git@github.com:${github_organisation_original}/${github_app_original}.git"
+git add --all
+git commit -m "Initial add"
 
-# Initialise new git repository, set its remote, and make an initial commit.
-# TODO
+# That’s it!
+

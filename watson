@@ -6,7 +6,7 @@
 #
 # “It’s elementary, my dear…”
 #
-# Helps you set up your new elementary OS Vala app.
+# Watson helps you set up your new elementary OS Vala app.
 #
 # For details, please see:
 # https://github.com/small-tech/watson
@@ -76,7 +76,7 @@ echo "Copyright name: ${copyright_name}"
 echo "Copyright email ${copyright_email}"
 
 # This is the list of files to carry out substituions in.
-files=('com.github.ORG.APP.yml' 'meson.build' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
+files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do

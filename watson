@@ -27,7 +27,7 @@
 # set -eu -o pipefail
 
 current_step=0
-steps=('GitHub Details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parsing responses' 'Performing substitutions' 'Renaming Files' 'Recreating Git Repository' 'Done')
+steps=('GitHub Details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Delete self' 'Recreate git repository' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -128,9 +128,14 @@ current_step=$(( current_step + 1 ))
 # Rename files.
 mv _README.md README.md
 mv _CHANGELOG.md CHANGELOG.md
-mv com.github.ORG.APP.yml "com.github.${GITHUB.ORG}.${GITHUB.APP}.yml"
-mv data/APP.appdata.xml.in "data/${GITHUB.APP}.appdata.xml.in"
-mv data/APP.desktop.in "data/${GITHUB.APP}.desktop.in"
+mv com.github.ORG.APP.yml "com.github.${github_organisation}.${github_app}.yml"
+mv data/APP.appdata.xml.in "data/${github_app}.appdata.xml.in"
+mv data/APP.desktop.in "data/${github_app}.desktop.in"
+
+current_step=$(( current_step + 1 ))
+
+# Delete self (goodbye, cruel world!)
+rm watson
 
 current_step=$(( current_step + 1 ))
 
@@ -146,4 +151,3 @@ git commit -m "Initial add"
 current_step=$(( current_step + 1 ))
 
 # That’s it!
-

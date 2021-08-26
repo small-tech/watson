@@ -1,6 +1,6 @@
 # Watson
 
-> “It’s elementary…”
+> “It’s elementary, my dear…”
 
 Watson is an application template for elementary OS 6 (Odin).
 

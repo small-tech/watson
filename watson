@@ -49,24 +49,32 @@ trap 'handle_error ${LINENO} $? ' ERR
 readonly copyright_year=$(date '+%Y')
 
 # Github details.
-github_details_pipe_separated=$(zenity --forms --width=600 --height=360 --title="Watson" --text="\n  <big><u>GitHub details</u></big>  \n\n  <i>https://github.com/<big>‹Organisaton›</big>/<big>‹App›</big></i>\n" --add-entry="Organisation:" --add-entry="App:")
+github_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" --text="\n  <big><u>GitHub details</u></big>  \n\n  <i>https://github.com/<big>‹Organisaton›</big>/<big>‹App›</big></i>\n" --add-entry="Organisation:" --add-entry="App:")
 
 current_step=$(( current_step + 1 ))
 
+echo ${github_details_pipe_separated}
+
 # Get app details (1/2).
-app_details_pipe_separated=$(zenity --forms --height=420 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
+app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
+
+echo ${app_details_pipe_separated}
 
 current_step=$(( current_step + 1 ))
 
 # Get app details (2/2) – categories (multi-select list).
-app_categories=$(zenity --list --width=800 --height=720 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
+app_categories=$(zenity --list --width=400 --height=460 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
+
+echo ${app_categories}
 
 current_step=$(( current_step + 1 ))
 
 # Get copyright details.
-copyright_details_pipe_separated=$(zenity --forms --width=600 --height=360 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
+copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
 
 current_step=$(( current_step + 1 ))
+
+exit 0
 
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"

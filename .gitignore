@@ -1,4 +1,4 @@
-build
-builddir
-.flatpak-builder
+build/
+builddir/
+.flatpak-builder/
 _README.html

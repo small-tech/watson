@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+pushd build
+ninja
+popd
+
+echo '{APP.NAME} is built.'
+echo ''
+echo 'Run it with:'
+echo 'build/com.github.{GITHUB.ORG}.{GITHUB.APP}'

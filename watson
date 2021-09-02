@@ -37,8 +37,7 @@ function dry_run () {
   dryRun=true
   echo '⧼⧼⧼⧼⧼ Dry run ⧽⧽⧽⧽⧽'
   echo ''
-  echo "Will carry out substitutions, present diff, and exit."
-  echo 'Revert using: git reset --hard HEAD && git clean -d -f'
+  echo "Carries out substitutions, presents diff, reverts changes, and exits."
 }
 
 [[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run
@@ -148,10 +147,11 @@ mv data/APP.desktop.in "data/${github_app}.desktop.in"
 current_step=$(( current_step + 1 ))
 
 # If this is a dry run (useful when developing/testing Watson itself),
-# then display a diff of what Watson has changed and exit without
-# removing watson or replacing the git repository.
+# then display a diff of what Watson has changed, revert the changes,
+# and exit without removing watson or replacing the git repository.
 if ${dryRun}; then
   git diff
+  git reset --hard HEAD && git clean -d -f
   exit
 fi
 

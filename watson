@@ -153,7 +153,7 @@ task/update-translations
 current_step=$(( current_step + 1 ))
 
 # When we have settings set up, we also have to
-# run task/install before app can run properly with
+# run task/install before the app can run properly with
 # settings enabled.
 
 # TODO

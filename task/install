@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+pushd build
+ninja && ninja install
+popd
+
+echo '{APP.NAME} is installed.'
+echo ''
+echo 'You can open it from the Applications Menu.'

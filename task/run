@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+pushd build
+ninja
+popd
+build/com.github.{GITHUB.ORG}.{GITHUB.APP}

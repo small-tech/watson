@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+pushd build
+ninja com.github.{GITHUB.ORG}.{GITHUB.APP}-pot
+ninja com.github.{GITHUB.ORG}.{GITHUB.APP}-update-po
+popd
+git diff
+
+echo 'Translations updated.'
+echo ''
+echo 'Don’t forget to add and commit any'
+echo 'new/changed files to your repository.'

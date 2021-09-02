@@ -118,7 +118,7 @@ copyright_email=${copyright_details[1]}
 current_step=$(( current_step + 1 ))
 
 # This is the list of files to carry out substituions in.
-files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' '.vscode/launch.json' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
+files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '.vscode/launch.json')
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do
@@ -145,6 +145,18 @@ mv data/APP.appdata.xml.in "data/${github_app}.appdata.xml.in"
 mv data/APP.desktop.in "data/${github_app}.desktop.in"
 
 current_step=$(( current_step + 1 ))
+
+# Create translations initially.
+# (Or else meson build will fail.)
+task/update-translations
+
+current_step=$(( current_step + 1 ))
+
+# When we have settings set up, we also have to
+# run task/install before app can run properly with
+# settings enabled.
+
+# TODO
 
 # If this is a dry run (useful when developing/testing Watson itself),
 # then display a diff of what Watson has changed, revert the changes,

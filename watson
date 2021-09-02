@@ -44,7 +44,7 @@ function dry_run () {
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
 current_step=0
-steps=('GitHub Details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Delete self' 'Recreate git repository' 'Exit')
+steps=('GitHub Details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Delete self' 'Recreate git repository' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -91,6 +91,8 @@ copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" -
 
 current_step=$(( current_step + 1 ))
 
+# Parse responses.
+
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"
 IFS='|' read -ra app_details <<< "${app_details_pipe_separated}"
@@ -117,6 +119,8 @@ copyright_email=${copyright_details[1]}
 
 current_step=$(( current_step + 1 ))
 
+# Perform substitutions.
+
 # This is the list of files to carry out substituions in.
 files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '.vscode/launch.json')
 
@@ -138,6 +142,7 @@ done
 current_step=$(( current_step + 1 ))
 
 # Rename files.
+
 mv _README.md README.md
 mv _CHANGELOG.md CHANGELOG.md
 mv com.github.ORG.APP.yml "com.github.${github_organisation}.${github_app}.yml"
@@ -146,11 +151,19 @@ mv data/APP.desktop.in "data/${github_app}.desktop.in"
 
 current_step=$(( current_step + 1 ))
 
-# Create translations initially.
-# (Or else meson build will fail.)
+# Meson build.
+
+meson build --prefix=/usr
+
+current_step=$(( current_step + 1 ))
+
+# Create translations.
+
 task/update-translations
 
 current_step=$(( current_step + 1 ))
+
+# Install app.
 
 # When we have settings set up, we also have to
 # run task/install before the app can run properly with

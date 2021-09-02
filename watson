@@ -26,6 +26,24 @@
 
 # set -eu -o pipefail
 
+dryRun=false
+
+function show_help () {
+  echo 'Usage: watson [--dryrun|-d|--help|-h]'
+  exit
+}
+
+function dry_run () {
+  dryRun=true
+  echo '⧼⧼⧼⧼⧼ Dry run ⧽⧽⧽⧽⧽'
+  echo ''
+  echo "Will carry out substitutions, present diff, and exit."
+  echo 'Revert using: git reset --hard HEAD'
+}
+
+[[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run
+[[ $1 == '--help' || $1 == '-h' ]] && show_help
+
 current_step=0
 steps=('GitHub Details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Delete self' 'Recreate git repository' 'Exit')
 
@@ -74,8 +92,6 @@ copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" -
 
 current_step=$(( current_step + 1 ))
 
-exit 0
-
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra github_details <<< "${github_details_pipe_separated}"
 IFS='|' read -ra app_details <<< "${app_details_pipe_separated}"
@@ -99,17 +115,6 @@ app_keywords=${app_details[4]}
 
 copyright_name=${copyright_details[0]}
 copyright_email=${copyright_details[1]}
-
-echo "Organisation: ${github_organisation}"
-echo "App: ${github_app}"
-echo "App name: ${app_name}"
-echo "App generic name: ${app_generic_name}"
-echo "App description: ${app_description}"
-echo "App tool-tip text (comment): ${app_comment}"
-echo "App category(ies): ${app_categories}"
-echo "App keywords: ${app_keywords}"
-echo "Copyright name: ${copyright_name}"
-echo "Copyright email ${copyright_email}"
 
 current_step=$(( current_step + 1 ))
 
@@ -142,14 +147,20 @@ mv data/APP.desktop.in "data/${github_app}.desktop.in"
 
 current_step=$(( current_step + 1 ))
 
+# If this is a dry run (useful when developing/testing Watson itself),
+# then display a diff of what Watson has changed and exit without
+# removing watson or replacing the git repository.
+if ${dryRun}; then
+  git diff
+  exit
+fi
+
 # Delete self (goodbye, cruel world!)
 rm watson
 
 current_step=$(( current_step + 1 ))
 
 # Delete existing git repository and set up the one specific to the app.
-# TODO: This requires a newer version of git than that which ships on elementary OS 6.
-# ===== Make sure we install this previous to this step.
 rm -rf .git
 git init
 git remote add origin "git@github.com:${github_organisation_original}/${github_app_original}.git"

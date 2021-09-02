@@ -38,7 +38,7 @@ function dry_run () {
   echo '⧼⧼⧼⧼⧼ Dry run ⧽⧽⧽⧽⧽'
   echo ''
   echo "Will carry out substitutions, present diff, and exit."
-  echo 'Revert using: git reset --hard HEAD'
+  echo 'Revert using: git reset --hard HEAD && git clean -d -f'
 }
 
 [[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run

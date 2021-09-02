@@ -118,7 +118,7 @@ copyright_email=${copyright_details[1]}
 current_step=$(( current_step + 1 ))
 
 # This is the list of files to carry out substituions in.
-files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
+files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' '.vscode/launch.json' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES')
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do

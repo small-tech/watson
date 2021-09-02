@@ -172,11 +172,18 @@ current_step=$(( current_step + 1 ))
 # TODO
 
 # If this is a dry run (useful when developing/testing Watson itself),
-# then display a diff of what Watson has changed, revert the changes,
+# then display the git status and information on how to revert the changes,
 # and exit without removing watson or replacing the git repository.
 if ${dryRun}; then
-  git diff
-  git reset --hard HEAD && git clean -d -f
+  git status
+  echo ''
+  echo '⧼⧼⧼⧼⧼ Dry run: complete. ⧽⧽⧽⧽⧽'
+  echo ''
+  echo 'See changes:'
+  echo 'git diff'
+  echo ''
+  echo 'Revert changes:'
+  echo 'git reset --hard HEAD && git clean -d -f'
   exit
 fi
 

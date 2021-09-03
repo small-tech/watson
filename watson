@@ -125,6 +125,31 @@ copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" -
 
 current_step=$(( current_step + 1 ))
 
+# Install VSCodium extensions (if desired).
+install_extensions_question=$(zenity --question --text='<big>Install VSCodium extensions?</big>\n\n<i>(This will install the Vala, Meson, CodeLLDB debugger, XML, and YAML extensions. With the extensions installed, press F5 in VSCodium to run/debug your app.)</i>' --title='Watson' --width=250 --icon-name=extension)
+install_extensions=$?
+if [[ $install_extensions == 0 ]]; then
+  # Vala
+  # https://github.com/Prince781/vala-vscode
+  codium --install-extension prince781.vala
+
+  # Meson
+  # https://github.com/asabil/vscode-meson
+  codium --install-extension asabil.meson
+
+  # CodeLLDB: a native debugger extension based on LLDB.
+  # https://github.com/vadimcn/vscode-lldb
+  codium --install-extension vadimcn.vscode-lldb
+
+  # XML
+  # https://github.com/redhat-developer/vscode-xml
+  codium --install-extension redhat.vscode-xml
+
+  # YAML
+  # https://github.com/redhat-developer/vscode-yaml
+  codium --install-extension redhat.vscode-yaml
+fi
+
 # Parse responses.
 
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.

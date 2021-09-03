@@ -14,7 +14,7 @@ If you haven’t already done so, we highly recommended you read through both of
 
 Also, to refer to language or library details during development, bookmark [Valadoc](https://valadoc.org/).
 
-_Watson is not a substitute for knowing what you’re doing. It is meant to lower the barrier of entry to creating an elementary OS application by automating the start of a new project and ensure you do not misconfigure your project or leave out important aspects (like translations). So, again, please read the above documents before starting to develop apps for elementary OS._
+___Watson is not a substitute for knowing what you’re doing.__ It is meant to lower the barrier of entry to creating an elementary OS application by automating the start of a new project and ensure you do not misconfigure your project or leave out important aspects (like translations). So, again, please read the above documents before starting to develop apps for elementary OS._
 
 ## Getting started
 

@@ -18,34 +18,43 @@ _Watson is not a substitute for knowing what you’re doing. It is meant to lowe
 
 ## Getting started
 
-Open up Terminal and:
+### On GitHub:
 
-1. Clone this template and switch your current working directory to your local working copy:
+1. __Press the green “Use this template” button__ for this repository to create your new project’s repository using Watson as the template.
+
+### On your development machine:
+
+2. __Clone your project__ and switch to its directory in Terminal:
 
     ```shell
-    git clone https://github.com/small-tech/watson my-project-name
-    cd my-project-name
+    git clone git@github.com:<my-org>/<my-app>.git
+    cd <my-app>
     ```
 
-1. Initialise your project:
+3. __Initialise your project__:
 
     ```shell
     ./watson
     ```
 
-    Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers.
+> __Note on the GitHub-centric workflow:__ The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). I have raised my concerns about this both from a legal perspective [as it is a trademark violation](https://github.com/elementary/appcenter/discussions/1622) and, more generally, [because it gives Microsoft a de-facto veto right on what apps are allowed on elementary OS](https://github.com/elementary/houston/issues/436#issuecomment-905554984). I do hope that this decision will be reviewed going forward. In the meanwhile, however, Watson is designed to make full use of the current system to make setting up a new elementary OS project as simple as possible while following all relevant platform guidelines and encouraging good practices. – [Aral](https://ar.al)
 
-    > The elementary OS AppCenter currently ties application bundle IDs and the directory structure for assets, etc., to the GitHub project. So your project’s application bundle ID will be something like com.github.small_tech.comet (the init script will automatically convert dashes to underscores as per flatpak’s naming requirements). I have raised my concerns about this both from a legal perspective [as it is a trademark violation](https://github.com/elementary/appcenter/discussions/1622) and, more generally, [because it gives Microsoft a de-facto veto right on what apps are allowed on elementary OS](https://github.com/elementary/houston/issues/436#issuecomment-905554984). I do hope that this decision will be reviewed going forward. – [Aral](https://ar.al)
 
-    It will also replace this README and the CHANGELOG with your application’s versions, recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
+## What to expect
 
-    Watson will delete itself once it’s done, leaving only your project behind.
+### Pre-flight checks
 
-2. Create your repository on GitHub (if you haven’t already) and push your changes:
+Watson will first check that you have the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) installed. These are required to create apps for elementary OS. If you don’t have them installed, Watson will ask you if you want to install them now.
 
-    ```shell
-    git push origin main
-    ```
+Next, Watson will check if you have [VSCodium](https://vscodium.com) installed. You do _not_ need to use VSCodium to create elementary OS apps. You can, for instance, use elementary OS [Code](https://docs.elementary.io/develop/writing-apps/the-basic-setup#code), which comes preinstalled, or a different third-party editor like [Builder](https://apps.gnome.org/en/app/org.gnome.Builder/). However, if you do have VSCodium installed, there are a number of extensions that will make creating your elementary OS app easier ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)). If Watson cannot find these extensions installed, it will ask you if you’d like to install them now. With these extensions installed, once you’ve initialised your project, you can simple open it in VSCodium and hit F5 to run/debug it (and you will get code intelligence, etc., for all your source files).
+
+### Interactive sections
+
+Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers.
+
+It will also replace this README and the CHANGELOG with your application’s versions, recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
+
+Watson will delete itself once it’s done, leaving only your project behind.
 
 That’s it!
 
@@ -56,6 +65,10 @@ Before moving on, make sure you learn how to set up [continuous integration](htt
 Enjoy and here’s hoping Watson will make it easier for you to start building excellent apps for elementary OS.
 
 ## What is included?
+
+  - A prompt to install the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) if they don’t already exist on your machine.
+
+  - A prompt to install recommended [VSCodium](https://vscodium.com/) Vala development and debugging extensions ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)) if you have VSCodium installed and are missing any of them.
 
   - A basic window with [header bar](https://docs.elementary.io/develop/apis/actions#gtk-headerbar).
 
@@ -91,6 +104,6 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
 ## What’s _not_ included?
 
-This template does not configure your system for elementary OS app development.
+You will need to configure your GitHub account and set up git on your machine yourself.
 
-For example, it doesn’t install git, or the elementary SDK. To get your system ready to develop for elementary OS, please see the [Basic Setup](https://docs.elementary.io/develop/writing-apps/the-basic-setup) section of the [elementary OS Developer Documentation](https://docs.elementary.io/develop/).
+For instructions on how to do this, please see the [Basic Setup](https://docs.elementary.io/develop/writing-apps/the-basic-setup) section of the [elementary OS Developer Documentation](https://docs.elementary.io/develop/).

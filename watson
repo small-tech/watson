@@ -85,7 +85,7 @@ if [[ ${running_on_working_copy_of_original_repository} == 'true' ]]; then
 fi
 
 current_step=0
-steps=('App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Delete self' 'Recreate git repository' 'Exit')
+steps=('App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Delete self' 'Commit and push changes' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -223,10 +223,14 @@ rm watson
 
 current_step=$(( current_step + 1 ))
 
-# Commit changes.
+# Commit and push changes.
 git add --all
 git commit -m "Customise app template"
+git push
 
 current_step=$(( current_step + 1 ))
 
 # That’s it!
+
+# Exit.
+exit 0

@@ -2,7 +2,7 @@
 
 ![{APP.NAME} icon](./data/128.svg)
 
-{APP.Description}
+{APP.DESCRIPTION}
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.{GITHUB.ORG}.{GITHUB.APP}])
 
@@ -56,9 +56,29 @@ This task creates a Flatpak distribution.
 task/pack
 ```
 
+### VSCodium
+
+You do _not_ need to use [VSCodium](https://vscodium.com) to create elementary OS apps.
+
+You can, for instance, use elementary OS [Code](https://docs.elementary.io/develop/writing-apps/the-basic-setup#code), which comes preinstalled, or a different third-party editor like [Builder](https://apps.gnome.org/en/app/org.gnome.Builder/).
+
+However, if you do have VSCodium installed, there are a number of extensions that will make creating your elementary OS app easier:
+
+  - [Vala](https://github.com/Prince781/vala-vscode) (`codium --install-extension prince781.vala`)
+  - [Meson](https://github.com/asabil/vscode-meson) (`codium --install-extension asabil.meson`)
+  - [CodeLLDB](https://github.com/vadimcn/vscode-lldb) (`codium --install-extension vadimcn.vscode-lldb`)
+  - [XML](https://github.com/redhat-developer/vscode-xml) (`codium --install-extension redhat.vscode-xml`)
+  - [YAML](https://github.com/redhat-developer/vscode-yaml) (`codium --install-extension redhat.vscode-yaml`)
+
+If you have the Meson and CodeLLDB extensions installed, you can run and debug the app using the Run and Debug feature (or just hit <kbd>F5</kbd>.)
+
 ## Continuous integration
 
-Learn how to set up [continuous integration](https://docs.elementary.io/develop/writing-apps/our-first-app/continuous-integration) and review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before [submitting the app](https://developer.elementary.io/).
+[Continuous Integration](https://docs.elementary.io/develop/writing-apps/our-first-app/continuous-integration) is set up for this repository.
+
+## Submitting the app
+
+Please make sure you [review the AppCenter publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before [submitting the app](https://developer.elementary.io/) to the [elementary OS AppCenter](https://appcenter.elementary.io/).
 
 ## It’s elementary, my dear…
 

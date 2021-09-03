@@ -20,7 +20,7 @@ ___Watson is not a substitute for knowing what you’re doing.__ It is meant to 
 
 ### On GitHub:
 
-1. __Press the green “Use this template” button__ for this repository to create your new project’s repository using Watson as the template.
+1. __Press the green [“Use this template” button](https://github.com/small-tech/watson#repo-content-pjax-container)__ for this repository to create your new project’s repository using Watson as the template.
 
 ### On your development machine:
 

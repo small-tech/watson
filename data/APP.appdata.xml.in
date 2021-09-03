@@ -3,6 +3,11 @@
 <component type="desktop">
   <id>com.github.{GITHUB.ORG}.{GITHUB.APP}</id>
   <metadata_license>CC0</metadata_license>
+  <!--
+    To update the content rating data of your app, use the generator at:
+    https://hughsie.github.io/oars/generate.html
+  -->
+  <content_rating type="oars-1.1" />
   <name>{APP.NAME}</name>
   <summary>{APP.DESCRIPTION}</summary>
   <description>

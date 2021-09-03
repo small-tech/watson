@@ -109,7 +109,7 @@ For instructions on how to do this, please see the [Basic Setup](https://docs.el
 
 ## Similar projects
 
-  - [Valdo](https://github.com/Prince781/valdo) by [Princeton Ferro](https://github.com/Prince781) (of Vala Language Server fame. Make sure you watch his excellent elementary developer weekend talk on [Improving App Development in Vala](https://edw.elementary.io/#improving-app-development-in-vala-by-princeton-ferro)). Valdo is an app that helps you create a new Vala project from a repository of templates. Valdo is not designed specifically for elementary OS but it does feature an elementary OS app template.
+  - [Valdo](https://github.com/Prince781/valdo) by [Princeton Ferro](https://github.com/Prince781) (of Vala Language Server fame. Make sure you watch his excellent [elementary Developer Weekend](https://edw.elementary.io) talk on [Improving App Development in Vala](https://edw.elementary.io/#improving-app-development-in-vala-by-princeton-ferro)). Valdo is an app that helps you create a new Vala project from a repository of templates. Valdo is not designed specifically for elementary OS but it does feature an elementary OS app template.
 
   - [Develop](https://github.com/alcadica/develop) is an app for elementary OS 5 that has starters for apps, [Switchboard](https://github.com/elementary/switchboard) [Plugs](https://github.com/elementary?q=switchboard-plug#org-repositories), and [Wingpanel](https://github.com/elementary/wingpanel) indicators.
 

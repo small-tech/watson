@@ -223,12 +223,9 @@ rm watson
 
 current_step=$(( current_step + 1 ))
 
-# Delete existing git repository and set up the one specific to the app.
-rm -rf .git
-git init
-git remote add origin "git@github.com:${github_organisation_original}/${github_app_original}.git"
+# Commit changes.
 git add --all
-git commit -m "Initial add"
+git commit -m "Customise app template"
 
 current_step=$(( current_step + 1 ))
 

@@ -73,7 +73,7 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
   - A basic window with [header bar](https://docs.elementary.io/develop/apis/actions#gtk-headerbar).
 
-  - __TODO__ [Action wired up for quit](https://docs.elementary.io/develop/apis/actions#glib-simpleaction) (<kbd>Ctrl</kdb>+<kbd>Q</kbd>).
+  - __TODO__ [Action wired up for quit](https://docs.elementary.io/develop/apis/actions#glib-simpleaction) (<kbd>Ctrl</kbd>+<kbd>Q</kbd>).
 
   - __TODO__ Simple [notifications](https://docs.elementary.io/develop/apis/notifications) example.
 

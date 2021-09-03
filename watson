@@ -216,7 +216,7 @@ current_step=$(( current_step + 1 ))
 # STEP 6: Perform substitutions.
 
 # This is the list of files to carry out substituions in.
-files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '.vscode/launch.json')
+files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '_.github/workflows/main.yml' '_.vscode/launch.json')
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do
@@ -242,6 +242,8 @@ mv _CHANGELOG.md CHANGELOG.md
 mv com.github.ORG.APP.yml "com.github.${github_organisation}.${github_app}.yml"
 mv data/APP.appdata.xml.in "data/${github_app}.appdata.xml.in"
 mv data/APP.desktop.in "data/${github_app}.desktop.in"
+mv _.github .github
+mv _.vscode .vscode
 
 current_step=$(( current_step + 1 ))
 
@@ -253,7 +255,7 @@ current_step=$(( current_step + 1 ))
 
 # STEP 9: Create translations.
 
-task/update-translations
+task/update-translations --no-status
 
 current_step=$(( current_step + 1 ))
 

@@ -59,7 +59,7 @@ That’s it!
 
 Now you can customise the template further to create your app, knowing you have scaffolding that adheres to elementary OS guidelines.
 
-Before moving on, make sure you learn how to set up [continuous integration](https://docs.elementary.io/develop/writing-apps/our-first-app/continuous-integration) and review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before you [submit your app](https://developer.elementary.io/).
+Before moving on, make sure you review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before you [submit your app](https://developer.elementary.io/).
 
 Enjoy and here’s hoping Watson will make it easier for you to start building excellent apps for elementary OS.
 
@@ -68,6 +68,8 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
   - A prompt to install the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) if they don’t already exist on your machine.
 
   - A prompt to install recommended [VSCodium](https://vscodium.com/) Vala development and debugging extensions ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)) if you have VSCodium installed and are missing any of them.
+
+  - VSCodium [launch.json] for [CodeLLDB](https://github.com/vadimcn/vscode-lldb) (press F5 to run/debug your project in VSCodium).
 
   - A basic window with [header bar](https://docs.elementary.io/develop/apis/actions#gtk-headerbar).
 
@@ -96,6 +98,8 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
   - [App icon](https://docs.elementary.io/develop/writing-apps/our-first-app/icons)
 
   - [Flatpak manifest](https://docs.elementary.io/develop/writing-apps/our-first-app/packaging)
+
+  - [Continuous Integration](https://docs.elementary.io/develop/writing-apps/our-first-app/continuous-integration) GitHub workflow.
 
   - The recommended [EditorConfig](https://docs.elementary.io/develop/writing-apps/code-style#editorconfig) for elementary OS Code and other compatible editors for enforcing the suggested [code style](https://docs.elementary.io/develop/writing-apps/code-style).
 

@@ -73,17 +73,17 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
   - A basic window with [header bar](https://docs.elementary.io/develop/apis/actions#gtk-headerbar).
 
-  - [Action wired up for quit](https://docs.elementary.io/develop/apis/actions#glib-simpleaction) (<kbd>Ctrl</kdb>+<kbd>Q</kbd>).
+  - __TODO__ [Action wired up for quit](https://docs.elementary.io/develop/apis/actions#glib-simpleaction) (<kbd>Ctrl</kdb>+<kbd>Q</kbd>).
 
-  - Simple [notifications](https://docs.elementary.io/develop/apis/notifications) example.
+  - __TODO__ Simple [notifications](https://docs.elementary.io/develop/apis/notifications) example.
 
   - [Granite](https://valadoc.org/granite/Granite.html) library for application [launchers](https://docs.elementary.io/develop/apis/launchers), [badges](https://docs.elementary.io/develop/apis/launchers#badges), [progress bars](https://docs.elementary.io/develop/apis/launchers#progress-bars), etc.
 
-  - [State saving](https://docs.elementary.io/develop/apis/state-saving) using a [gschema.xml](https://docs.elementary.io/develop/apis/state-saving#define-settings-keys) file and [GSettings](https://valadoc.org/gio-2.0/GLib.Settings.html).
+  - __TODO__ [State saving](https://docs.elementary.io/develop/apis/state-saving) using a [gschema.xml](https://docs.elementary.io/develop/apis/state-saving#define-settings-keys) file and [GSettings](https://valadoc.org/gio-2.0/GLib.Settings.html).
 
-  - [Custom resources](https://docs.elementary.io/develop/apis/gresource) ([custom icons](https://docs.elementary.io/develop/apis/gresource#icons), etc.) using a [gresource.xml](https://docs.elementary.io/develop/apis/gresource) file.
+  - __TODO: Use in app__ [Custom resources](https://docs.elementary.io/develop/apis/gresource) ([custom icons](https://docs.elementary.io/develop/apis/gresource#icons), etc.) using a [gresource.xml](https://docs.elementary.io/develop/apis/gresource) file.
 
-  - [Colour scheme](https://docs.elementary.io/develop/apis/color-scheme) support.
+  - __TODO__ [Colour scheme](https://docs.elementary.io/develop/apis/color-scheme) support.
 
   - [.desktop](https://docs.elementary.io/develop/writing-apps/our-first-app#the-desktop-file) file for information about your app that’s displayed in the Application Menu and Dock.
 

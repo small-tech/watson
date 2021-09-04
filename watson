@@ -255,9 +255,21 @@ mv data/APP.desktop.in "data/${github_app}.desktop.in"
 # delete the now-empty template directory, thereby leaving the
 # new app ready to be built in the next step.
 popd
-mv template/.* .
+wildcards_match_leading_periods_in_file_names=($(shopt dotglob))
+we_turned_on_dotglob='false'
+if [[ ${wildcards_match_leading_periods_in_file_names[1]} == 'off' ]]; then
+  # Make wildcards match leading periods in file names so
+  # that the hidden folders in the template directory get
+  # moved over also. We will reset this once we’re done.
+  shopt -s dotglob
+  we_turned_on_dotglob='true'
+fi
 mv template/* .
 rm -r template
+if [[ ${we_turned_on_dotglob} == 'true' ]]; then
+  # Let’s leave dotglob as we found it.
+  shopt -u dotglob
+fi
 
 current_step=$(( current_step + 1 ))
 

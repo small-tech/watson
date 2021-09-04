@@ -255,6 +255,7 @@ mv data/APP.desktop.in "data/${github_app}.desktop.in"
 # delete the now-empty template directory, thereby leaving the
 # new app ready to be built in the next step.
 popd
+mv template/.* .
 mv template/* .
 rm -r template
 

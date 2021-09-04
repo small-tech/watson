@@ -216,7 +216,11 @@ current_step=$(( current_step + 1 ))
 # STEP 6: Perform substitutions.
 
 # This is the list of files to carry out substituions in.
-files=('com.github.ORG.APP.yml' 'meson.build' '_README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '_.github/workflows/main.yml' '_.vscode/launch.json')
+# These files are all in the template/ directory.
+files=('com.github.ORG.APP.yml' 'meson.build' 'README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '.github/workflows/main.yml' '.vscode/launch.json')
+
+# Switch to the template directory.
+pushd template
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do
@@ -233,17 +237,26 @@ for file in "${files[@]}"; do
   sed -i "s/{COPYRIGHT.EMAIL}/${copyright_email}/g" "${file}"
 done
 
+# Commit our changes (so we can always see a clean diff of the substitutions).
+git add --all
+git commit -m "Carry out template substitutions"
+
 current_step=$(( current_step + 1 ))
 
 # STEP 7: Rename files.
 
-mv _README.md README.md
-mv _CHANGELOG.md CHANGELOG.md
 mv com.github.ORG.APP.yml "com.github.${github_organisation}.${github_app}.yml"
 mv data/APP.appdata.xml.in "data/${github_app}.appdata.xml.in"
 mv data/APP.desktop.in "data/${github_app}.desktop.in"
-mv _.github .github
-mv _.vscode .vscode
+
+# Switch back to the main directory, move all the files in the
+# template directory to the main directory (overriding Watson’s
+# own README, CHANGELOG, .gitignore, etc., in the process), and
+# delete the now-empty template directory, thereby leaving the
+# new app ready to be built in the next step.
+popd
+mv template/* .
+rm -r template
 
 current_step=$(( current_step + 1 ))
 
@@ -298,7 +311,7 @@ current_step=$(( current_step + 1 ))
 # Step 12: Commit and push changes.
 
 git add --all
-git commit -m "Customise app template"
+git commit -m "Finish customising app template"
 git push
 
 current_step=$(( current_step + 1 ))

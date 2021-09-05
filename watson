@@ -258,6 +258,7 @@ popd
 mv template/* .
 mv template/.vscode .
 mv template/.github .
+mv template/.editorconfig .
 rm -r template
 
 current_step=$(( current_step + 1 ))

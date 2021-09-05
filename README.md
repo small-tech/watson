@@ -83,7 +83,7 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
   - __TODO: Use in app__ [Custom resources](https://docs.elementary.io/develop/apis/gresource) ([custom icons](https://docs.elementary.io/develop/apis/gresource#icons), etc.) using a [gresource.xml](https://docs.elementary.io/develop/apis/gresource) file.
 
-  - __TODO__ [Colour scheme](https://docs.elementary.io/develop/apis/color-scheme) support.
+  - [Colour scheme](https://docs.elementary.io/develop/apis/color-scheme) support.
 
   - [.desktop](https://docs.elementary.io/develop/writing-apps/our-first-app#the-desktop-file) file for information about your app that’s displayed in the Application Menu and Dock.
 

@@ -63,7 +63,7 @@ Before moving on, make sure you review the AppCenter [publishing requirements](h
 
 Enjoy and here’s hoping Watson will make it easier for you to start building excellent apps for elementary OS.
 
-## What is included?
+## What’s included?
 
   - A prompt to install the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) if they don’t already exist on your machine.
 

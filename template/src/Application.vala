@@ -28,6 +28,16 @@ public class App : Gtk.Application {
             default_width = 300,
         };
 
+        // Create the quit action and map the Ctrl + Q and Ctrl + W
+        // accelerators to it. When we receive the quit action,
+        // exit the app by destroying the main window.
+        var quit_action = new SimpleAction ("quit", null);
+        add_action (quit_action);
+        set_accels_for_action ("app.quit",  {"<Control>q", "<Control>w"});
+        quit_action.activate.connect (() => {
+            main_window.destroy ();
+        });
+
         var header_bar = new Gtk.HeaderBar () {
             show_close_button = true
         };

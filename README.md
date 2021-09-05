@@ -75,11 +75,11 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
   - [Action wired up for quit with keyboard shortcut accelerators](https://docs.elementary.io/develop/apis/actions#glib-simpleaction) (<kbd>Ctrl</kbd>+<kbd>Q</kbd>).
 
-  - __TODO__ Simple [notifications](https://docs.elementary.io/develop/apis/notifications) example.
+  - __TODO__ Set up so your app can send [notifications](https://docs.elementary.io/develop/apis/notifications).
 
   - [Granite](https://valadoc.org/granite/Granite.html) library for application [launchers](https://docs.elementary.io/develop/apis/launchers), [badges](https://docs.elementary.io/develop/apis/launchers#badges), [progress bars](https://docs.elementary.io/develop/apis/launchers#progress-bars), etc.
 
-  - __TODO__ [State saving](https://docs.elementary.io/develop/apis/state-saving) using a [gschema.xml](https://docs.elementary.io/develop/apis/state-saving#define-settings-keys) file and [GSettings](https://valadoc.org/gio-2.0/GLib.Settings.html).
+  - __TODO__ [State saving](https://docs.elementary.io/develop/apis/state-saving) using a [gschema.xml](https://docs.elementary.io/develop/apis/state-saving#define-settings-keys) file and [GSettings](https://valadoc.org/gio-2.0/GLib.Settings.html). Set up to [save and restore the last window state](https://wiki.gnome.org/HowDoI/SaveWindowState). QUESTION: given that elementary OS currently has issues with, e.g., showing windows that were last displayed on a different screen (when you unplug an external monitor, for example). Is there a way we can workaround this in an app (check to see if we’re visible on the primary/plugged in screen). Also, check if this has been reported as a bug in Gala/what the state of it is.
 
   - __TODO: Use in app__ [Custom resources](https://docs.elementary.io/develop/apis/gresource) ([custom icons](https://docs.elementary.io/develop/apis/gresource#icons), etc.) using a [gresource.xml](https://docs.elementary.io/develop/apis/gresource) file.
 

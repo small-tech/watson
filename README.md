@@ -107,9 +107,13 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
 ## What’s _not_ included?
 
-You will need to configure your GitHub account and set up git on your machine yourself.
+Watson scaffolds your elementary OS application using good practices.
 
-For instructions on how to do this, please see the [Basic Setup](https://docs.elementary.io/develop/writing-apps/the-basic-setup) section of the [elementary OS Developer Documentation](https://docs.elementary.io/develop/).
+Watson’s goal with the generated app is that you should only have to either customise existing functionality (e.g., replace the app logo SVGs with your own), use existing functionality (e.g., add your custom icons or your own translations), or add specialised logic to the generated app. So you shouldn’t have to _remove_ any of the generated functionality. This is why there are no sample widgets or even basic layout generated as that will differ from app to app.
+
+The generated scaffolding is just that, an almost blank slate to quickly get you started with building your own application. It is _not_ a widget demo (see the TODO_LINK [Granite]() and TODO_LINK [Gtk+]() demos) and nor is it meant to teach you how to build an elementary OS app (see the [elementary OS Developer Documentation](https://docs.elementary.io/develop/)).
+
+Also, while Watson will install the elementary OS development tools and even the recommended VSCodium extensions for you if you ask it to, __you need to configure your GitHub account and set up git on your machine yourself.__ For instructions on how to do this, please see the [Basic Setup](https://docs.elementary.io/develop/writing-apps/the-basic-setup) section of the [elementary OS Developer Documentation](https://docs.elementary.io/develop/).
 
 ## Similar projects
 

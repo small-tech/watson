@@ -181,15 +181,11 @@ current_step=$(( current_step + 1 ))
 
 app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
 
-echo ${app_details_pipe_separated}
-
 current_step=$(( current_step + 1 ))
 
 # STEP 3: Get app details (2/2) – categories (multi-select list).
 
 app_categories=$(zenity --list --width=400 --height=460 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
-
-echo ${app_categories}
 
 current_step=$(( current_step + 1 ))
 
@@ -218,6 +214,11 @@ app_generic_name=${app_details[1]}
 app_description=${app_details[2]}
 app_comment=${app_details[3]}
 app_keywords=${app_details[4]}
+
+# The namespace is calculated by removing spaces from the app name.
+# As app names are capitalised by convention, this should lead to a namespace
+# that conforms to Vala naming conventions on elementary OS.
+app_namespace=$(echo "${app_name}" | sed s/[[:space:]]//g)
 
 copyright_name=${copyright_details[0]}
 copyright_email=${copyright_details[1]}

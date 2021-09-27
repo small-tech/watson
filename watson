@@ -32,23 +32,34 @@ function show_usage {
 
 function show_error {
   message=$1
+  show_clone_instructions=$2
   show_usage
   echo ''
   echo -e "❌ \033[41mERROR\033[0m ${message}"
-  echo ''
-  echo 'To use Watson:'
-  echo ''
-  echo '1. Go to https://github.com/small-tech/watson'
-  echo '2. Press the green “Use this template” button to create a new repository from Watson.'
-  echo '3. Clone your new repository.'
-  echo '4. Switch to that repository.'
-  echo '5. Run ./watson'
+  if [[show_clone_instructions == '--teach-how-to-use']]; then
+    echo ''
+    echo 'To use Watson:'
+    echo ''
+    echo '1. Go to https://github.com/small-tech/watson'
+    echo '2. Press the green “Use this template” button to create a new repository from Watson.'
+    echo '3. Clone your new repository.'
+    echo '4. Switch to that repository.'
+    echo '5. Run ./watson'
+  fi
   exit
 }
 
 function show_help {
   show_usage
   exit
+}
+
+function validate_input {
+  # The only validation we do currently is for empty input.
+  # (All fields on all screens are required.)
+  if [[ $1 =~ '||' ]]; then
+    show_error 'All fields are required. Please run Watson again and try again.'
+  fi
 }
 
 dryRun=false
@@ -58,7 +69,7 @@ gitRemote=($(git remote -v 2> /dev/null))
 
 # Ensure current directory is a git working copy.
 if [[ "$?" == "128" ]]; then
-  show_error 'The current directory is not a git working copy.'
+  show_error 'The current directory is not a git working copy.' --teach-how-to-use
 fi
 
 gitUrl=${gitRemote[1]}
@@ -81,7 +92,7 @@ github_app_original="${BASH_REMATCH[2]}"
 # using the “use this template” button on GitHub to
 # create their own repository based on Watson.
 if [[ "${github_organisation_original}" == "small-tech" && "${github_app_original}" == "watson" ]]; then
-  show_error 'You currently have the original Watson repository cloned.'
+  show_error 'You currently have the original Watson repository cloned.' --teach-how-to-use
 fi
 
 function dry_run {
@@ -181,17 +192,23 @@ current_step=$(( current_step + 1 ))
 
 app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
 
+validate_input $app_details_pipe_separated
+
 current_step=$(( current_step + 1 ))
 
 # STEP 3: Get app details (2/2) – categories (multi-select list).
 
 app_categories=$(zenity --list --width=400 --height=460 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
 
+validate_input $app_categories
+
 current_step=$(( current_step + 1 ))
 
 # STEP 4: Get copyright details.
 
 copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
+
+validate_input $copyright_details_pipe_separated
 
 current_step=$(( current_step + 1 ))
 

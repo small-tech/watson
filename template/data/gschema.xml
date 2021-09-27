@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/{GITHUB.ORG}/{GITHUB.APP}" id="com.github.{GITHUB.ORG}.{GITHUB.APP}">
-    <key name="switch-state" type="b">
-      <default>false</default>
-      <summary>The state of the switch</summary>
-      <description>Whether the switch is toggled</description>
+  <enum id="com.github.{GITHUB.ORG}.{GITHUB.APP}.window-states">
+    <value nick="Normal" value="0" />
+    <value nick="Maximized" value="1" />
+    <value nick="Fullscreen" value="2" />
+  </enum>
+  <schema path="/com/github/{GITHUB.ORG}/{GITHUB.APP}/saved-state/" id="com.github.{GITHUB.ORG}.{GITHUB.APP}.saved-state" gettext-domain="com.github.{GITHUB.ORG}">
+    <key name="window-state" enum="com.github.{GITHUB.ORG}.{GITHUB.APP}.window-states">
+      <default>"Normal"</default>
+      <summary>The saved state of the window.</summary>
+      <description>The saved state of the window.</description>
+    </key>
+    <key name="window-position" type="(ii)">
+      <default>(-1, -1)</default>
+      <summary>Window position</summary>
+      <description>Most recent window position (x, y)</description>
+    </key>
+    <key name="window-size" type="(ii)">
+      <default>(420, 420)</default>
+      <summary>Most recent window size</summary>
+      <description>Most recent window size (width, height)</description>
     </key>
   </schema>
 </schemalist>

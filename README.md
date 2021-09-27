@@ -2,19 +2,23 @@
 
 > “It’s elementary, my dear…”
 
+__Status: Alpha. Looking for feedback and input from the elementary OS community.__
+
 Watson is an application template for elementary OS 6 (Odin).
 
-Watson will get you up and running with scaffolding that compiles on elementary OS 6 (Odin) and follows elementary OS 6 best practices (e.g., [code style](https://docs.elementary.io/develop/writing-apps/code-style)). Once you’ve made it your own, you can submit your app for inclusion in the [AppCenter](https://docs.elementary.io/develop/appcenter/publishing-requirements) as a curated app.
+Watson will get you up and running with a single-window elementary OS 6 (Odin) app that complies with the [elementary OS Human Interface Guidelines](https://docs.elementary.io/hig/) and follows other elementary OS 6 conventions (e.g., [code style](https://docs.elementary.io/develop/writing-apps/code-style)).
+
+Once you’ve made it your own, you can submit your app for inclusion in the [AppCenter](https://docs.elementary.io/develop/appcenter/publishing-requirements) as a curated app.
 
 ## What Watson is (and what Watson is not).
 
-The scaffolding that’s included is based on the [elementary OS Developer Documentation](https://docs.elementary.io/develop/) and [elementary OS Human Interface Guidelines](https://docs.elementary.io/hig/).
+The basic single-window app that’s generated is based on the [elementary OS Developer Documentation](https://docs.elementary.io/develop/) as well as a review of the conventions employed by the core apps that ship with elementary OS (like Code and Calculator). It also complies with the [elementary OS Human Interface Guidelines](https://docs.elementary.io/hig/).
 
-If you haven’t already done so, we highly recommended you read through both of these important resources before continuing.
+If you haven’t already done so, we highly recommended you read through both of the important resources linked above before continuing. Also, to refer to language or library details during development, bookmark [Valadoc](https://valadoc.org/).
 
-Also, to refer to language or library details during development, bookmark [Valadoc](https://valadoc.org/).
+When deciding what to include and what to leave out of the generated app, the guiding principle is to include base functionality expected of any elementary OS 6 app. The goal is for you to only have to add to the generated template, not remove from it or change the generated code for common types of apps (with the understanding that multi-window applications and highly custom apps might require a bit of fiddling).
 
-___Watson is not a substitute for knowing what you’re doing.__ It is meant to lower the barrier of entry to creating an elementary OS application by automating the start of a new project and ensure you do not misconfigure your project or leave out important aspects (like translations). So, again, please read the above documents before starting to develop apps for elementary OS._
+___Watson is not a substitute for knowing what you’re doing.__ Watson is meant to lower the barrier of entry to creating an elementary OS application by automating the start of a new project to ensure you do not misconfigure your project or leave out important aspects (like window state preservation or translations). So, again, please read the above documents before starting to develop apps for elementary OS._
 
 ## Getting started
 
@@ -57,7 +61,7 @@ Watson will delete itself once it’s done, leaving only your project behind.
 
 That’s it!
 
-Now you can customise the template further to create your app, knowing you have scaffolding that adheres to elementary OS guidelines.
+Now you can customise the template further to create your app, knowing you have a base that adheres to elementary OS guidelines.
 
 Before moving on, make sure you review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before you [submit your app](https://developer.elementary.io/).
 
@@ -71,7 +75,11 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
   - VSCodium [launch.json] for [CodeLLDB](https://github.com/vadimcn/vscode-lldb) (press F5 to run/debug your project in VSCodium).
 
-  - A basic window with [header bar](https://docs.elementary.io/develop/apis/actions#gtk-headerbar).
+  - A basic `Application` class that instantiates a single window (`MainWindow`).
+
+  - A basic window (`MainWindow`) based on the Handy library. (While this is not yet reflected in the [elementary OS Developer Documentation](https://docs.elementary.io/develop/), the core apps that ship with elementary OS – like Code and Calculator – all use the Handy library so I’ve based the template on them.)
+
+  - A basic Handy header bar, as part of the basic window.
 
   - [Action wired up for quit with keyboard shortcut accelerators](https://docs.elementary.io/develop/apis/actions#glib-simpleaction) (<kbd>Ctrl</kbd>+<kbd>Q</kbd>).
 
@@ -79,7 +87,7 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
   - [Granite](https://valadoc.org/granite/Granite.html) library for application [launchers](https://docs.elementary.io/develop/apis/launchers), [badges](https://docs.elementary.io/develop/apis/launchers#badges), [progress bars](https://docs.elementary.io/develop/apis/launchers#progress-bars), etc.
 
-  - __TODO__ [State saving](https://docs.elementary.io/develop/apis/state-saving) using a [gschema.xml](https://docs.elementary.io/develop/apis/state-saving#define-settings-keys) file and [GSettings](https://valadoc.org/gio-2.0/GLib.Settings.html). Set up to [save and restore the last window state](https://wiki.gnome.org/HowDoI/SaveWindowState). QUESTION: given that elementary OS currently has issues with, e.g., showing windows that were last displayed on a different screen (when you unplug an external monitor, for example). Is there a way we can workaround this in an app (check to see if we’re visible on the primary/plugged in screen). Also, check if this has been reported as a bug in Gala/what the state of it is.
+  - [Window state preservation](https://docs.elementary.io/develop/apis/state-saving) using a [gschema.xml](https://docs.elementary.io/develop/apis/state-saving#define-settings-keys) file and [GSettings](https://valadoc.org/gio-2.0/GLib.Settings.html). Set up to automatically save and restore the last window state (dimensions, location, and whether it is maximised or fullscreen). QUESTION: given that elementary OS currently has issues with, e.g., showing windows that were last displayed on a different screen (when you unplug an external monitor, for example). Is there a way we can workaround this in an app (check to see if we’re visible on the primary/plugged in screen). Also, check if this has been reported as a bug in Gala/what the state of it is.
 
   - __TODO: Use in app__ [Custom resources](https://docs.elementary.io/develop/apis/gresource) ([custom icons](https://docs.elementary.io/develop/apis/gresource#icons), etc.) using a [gresource.xml](https://docs.elementary.io/develop/apis/gresource) file.
 
@@ -107,11 +115,11 @@ Enjoy and here’s hoping Watson will make it easier for you to start building e
 
 ## What’s _not_ included?
 
-Watson scaffolds your elementary OS application using good practices.
+Watson creates a basic single-window elementary OS application using good practices.
 
 Watson’s goal with the generated app is that you should only have to either customise existing functionality (e.g., replace the app logo SVGs with your own), use existing functionality (e.g., add your custom icons or your own translations), or add specialised logic to the generated app. So you shouldn’t have to _remove_ any of the generated functionality. This is why there are no sample widgets or even basic layout generated as that will differ from app to app.
 
-The generated scaffolding is just that, an almost blank slate to quickly get you started with building your own application. It is _not_ a widget demo (see the TODO_LINK [Granite]() and TODO_LINK [Gtk+]() demos) and nor is it meant to teach you how to build an elementary OS app (see the [elementary OS Developer Documentation](https://docs.elementary.io/develop/)).
+The generated skeleton is just that, an almost blank slate to quickly get you started with building your own application. It is _not_ a widget demo (see the TODO_LINK [Granite]() and TODO_LINK [Gtk+]() demos) and nor is it meant to teach you how to build an elementary OS app (see the [elementary OS Developer Documentation](https://docs.elementary.io/develop/)).
 
 Also, while Watson will install the elementary OS development tools and even the recommended VSCodium extensions for you if you ask it to, __you need to configure your GitHub account and set up git on your machine yourself.__ For instructions on how to do this, please see the [Basic Setup](https://docs.elementary.io/develop/writing-apps/the-basic-setup) section of the [elementary OS Developer Documentation](https://docs.elementary.io/develop/).
 

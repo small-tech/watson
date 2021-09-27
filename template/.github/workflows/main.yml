@@ -24,7 +24,7 @@ jobs:
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v3
       with:
         # This is the name of the Bundle file we're building and can be anything you like
-        bundle: MyApp.flatpak
+        bundle: {APP.NAMESPACE}.flatpak
         # This uses your app's RDNN ID
         manifest-path: com.github.{GITHUB.ORG}.{GITHUB.APP}.yml
 

@@ -45,7 +45,7 @@ namespace {APP.NAMESPACE} {
                 height_request: 420,
                 width_request: 420,
                 hide_titlebar_when_maximized: true,          // FIXME: This does not seem to have an effect. Why not?
-                icon_name: "com.github.small_tech.watson_dev"
+                icon_name: "com.github.{GITHUB.ORG}.{GITHUB.APP}"
             );
         }
 

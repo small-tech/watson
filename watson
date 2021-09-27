@@ -238,8 +238,8 @@ pushd template
 for file in "${files[@]}"; do
   sed -i "s/{GITHUB.ORG}/${github_organisation}/g" "${file}"
   sed -i "s/{GITHUB.APP}/${github_app}/g" "${file}"
-  sed -i "s/{APP.NAME}/${app_name}/g" "${file}"
   sed -i "s/{APP.NAMESPACE}/${app_namespace}/g" "${file}"
+  sed -i "s/{APP.NAME}/${app_name}/g" "${file}"
   sed -i "s/{APP.GENERIC_NAME}/${app_generic_name}/g" "${file}"
   sed -i "s/{APP.DESCRIPTION}/${app_description}/g" "${file}"
   sed -i "s/{APP.COMMENT}/${app_comment}/g" "${file}"

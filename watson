@@ -229,7 +229,7 @@ current_step=$(( current_step + 1 ))
 
 # This is the list of files to carry out substituions in.
 # These files are all in the template/ directory.
-files=('com.github.ORG.APP.yml' 'meson.build' 'README.md' 'src/Application.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '.github/workflows/main.yml' '.vscode/launch.json')
+files=('com.github.ORG.APP.yml' 'meson.build' 'README.md' 'src/Widgets/HeaderBar.vala' 'src/Application.vala' 'src/MainWindow.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/run' 'task/update-translations' '.github/workflows/main.yml' '.vscode/launch.json')
 
 # Switch to the template directory.
 pushd template

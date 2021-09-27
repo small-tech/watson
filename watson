@@ -33,10 +33,12 @@ function show_usage {
 function show_error {
   message=$1
   show_clone_instructions=$2
-  show_usage
+  if [[ $show_clone_instructions == '--teach-how-to-use' ]]; then
+    show_usage
+  fi
   echo ''
   echo -e "❌ \033[41mERROR\033[0m ${message}"
-  if [[$show_clone_instructions == '--teach-how-to-use']]; then
+  if [[ $show_clone_instructions == '--teach-how-to-use' ]]; then
     echo ''
     echo 'To use Watson:'
     echo ''
@@ -54,12 +56,8 @@ function show_help {
   exit
 }
 
-function validate_input {
-  # The only validation we do currently is for empty input.
-  # (All fields on all screens are required.)
-  if [[ $1 =~ '||' ]]; then
-    show_error 'All fields are required. Please run Watson again and try again.'
-  fi
+function show_validation_error {
+  show_error 'All fields are required. Please re-run Watson and try again.'
 }
 
 dryRun=false
@@ -192,7 +190,8 @@ current_step=$(( current_step + 1 ))
 
 app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
 
-validate_input $app_details_pipe_separated
+app_details_validator='^.+\|.+\|.+\|.+\|.+$'
+[[ $app_details_pipe_separated =~ $app_details_validator ]] || show_validation_error
 
 current_step=$(( current_step + 1 ))
 
@@ -200,7 +199,8 @@ current_step=$(( current_step + 1 ))
 
 app_categories=$(zenity --list --width=400 --height=460 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
 
-validate_input $app_categories
+app_categories_validator='^.+$'
+[[ $app_categories =~ $app_categories_validator ]] || show_validation_error
 
 current_step=$(( current_step + 1 ))
 
@@ -208,7 +208,8 @@ current_step=$(( current_step + 1 ))
 
 copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
 
-validate_input $copyright_details_pipe_separated
+copyright_details_validator='^.+\|.+$'
+[[ $copyright_details_pipe_separated =~ $app_details_validator ]] || show_validation_error
 
 current_step=$(( current_step + 1 ))
 

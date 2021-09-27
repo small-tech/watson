@@ -26,10 +26,41 @@
 
 # set -eu -o pipefail
 
+function show_usage {
+  echo 'Usage: watson [--dryrun|-d|--help|-h]'
+}
+
+function show_error {
+  message=$1
+  show_usage
+  echo ''
+  echo -e "❌ \033[41mERROR\033[0m ${message}"
+  echo ''
+  echo 'To use Watson:'
+  echo ''
+  echo '1. Go to https://github.com/small-tech/watson'
+  echo '2. Press the green “Use this template” button to create a new repository from Watson.'
+  echo '3. Clone your new repository.'
+  echo '4. Switch to that repository.'
+  echo '5. Run ./watson'
+  exit
+}
+
+function show_help {
+  show_usage
+  exit
+}
+
 dryRun=false
 
 # Get the GitHub details from git itself.
-gitRemote=($(git remote -v))
+gitRemote=($(git remote -v 2> /dev/null))
+
+# Ensure current directory is a git working copy.
+if [[ "$?" == "128" ]]; then
+  show_error 'The current directory is not a git working copy.'
+fi
+
 gitUrl=${gitRemote[1]}
 
 # This regular expression extracts the organisation
@@ -45,26 +76,15 @@ gitUrlRegExp='.*?github\.com.(.*?)/(.*?)\.git'
 github_organisation_original="${BASH_REMATCH[1]}"
 github_app_original="${BASH_REMATCH[2]}"
 
-running_on_working_copy_of_original_repository=$([[ "${github_organisation_original}" == "small-tech" && "${github_app_original}" == "watson" ]] && echo true || echo false)
+# Ensure the developer hasn’t accidentally cloned
+# The Watson repository instead of creating their own
+# using the “use this template” button on GitHub to
+# create their own repository based on Watson.
+if [[ "${github_organisation_original}" == "small-tech" && "${github_app_original}" == "watson" ]]; then
+  show_error 'You currently have the original Watson repository cloned.'
+fi
 
-function show_help () {
-  echo 'Usage: watson [--dryrun|-d|--help|-h]'
-  if [[ ${running_on_working_copy_of_original_repository} == 'true' ]]; then
-    echo ''
-    echo -e "❌ \033[41mERROR\033[0m You currently have the original Watson repository cloned."
-    echo ''
-    echo 'To use Watson:'
-    echo ''
-    echo '1. Go to https://github.com/small-tech/watson'
-    echo '2. Press the green “Use this template” button to create a new repository from Watson.'
-    echo '3. Clone your new repository.'
-    echo '4. Switch to that repository.'
-    echo '5. Run ./watson'
-  fi
-  exit
-}
-
-function dry_run () {
+function dry_run {
   dryRun=true
   echo '⧼⧼⧼⧼⧼ Dry run ⧽⧽⧽⧽⧽'
   echo ''
@@ -75,15 +95,6 @@ function dry_run () {
 [[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
-# Check that the developer hasn’t accidentally cloned
-# The Watson repository instead of creating their own
-# using the “use this template” button on GitHub to
-# create their own repository based on Watson. If so,
-# warn them and exit.
-if [[ ${running_on_working_copy_of_original_repository} == 'true' ]]; then
-  show_help
-fi
-
 current_step=0
 steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Ninja build' 'Delete self' 'Commit and push changes' 'Exit')
 
@@ -91,7 +102,7 @@ steps=('Install elementary OS development libaries' 'Install VSCodium extensions
 #
 # $1: Line number of error.
 # $2: Exit code of command that failed.
-function handle_error () {
+function handle_error {
   printf "Step %d (%s)" $(( ${current_step} + 1 )) "${steps[${current_step}]}"
   if (( current_step > 2 && current_step < 6 )); then
     printf " cancelled.\n"

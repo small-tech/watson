@@ -36,7 +36,7 @@ function show_error {
   show_usage
   echo ''
   echo -e "❌ \033[41mERROR\033[0m ${message}"
-  if [[show_clone_instructions == '--teach-how-to-use']]; then
+  if [[$show_clone_instructions == '--teach-how-to-use']]; then
     echo ''
     echo 'To use Watson:'
     echo ''

@@ -209,7 +209,7 @@ current_step=$(( current_step + 1 ))
 copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
 
 copyright_details_validator='^.+\|.+$'
-[[ $copyright_details_pipe_separated =~ $app_details_validator ]] || show_validation_error
+[[ $copyright_details_pipe_separated =~ $copyright_details_validator ]] || show_validation_error
 
 current_step=$(( current_step + 1 ))
 

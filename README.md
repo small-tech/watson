@@ -2,7 +2,7 @@
 
 > “It’s elementary, my dear…”
 
-__Status: Alpha. Looking for feedback and input from the elementary OS community.__
+___Status: Alpha. Looking for feedback and input from the elementary OS community.__ For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions). For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
 
 Watson is an application template for elementary OS 6 (Odin).
 

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/com/github/{GITHUB.ORG}/{GITHUB.APP}">
-    <file>custom-icon.png</file>
-  </gresource>
+  <!--
+    Put any custom resources in the data directory and declare
+    them here. e.g.
+
+    <gresource prefix="/com/github/{GITHUB.ORG}/{GITHUB.APP}">
+      <file>custom-icon.png</file>
+    </gresource>
+  -->
 </gresources>

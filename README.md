@@ -2,7 +2,7 @@
 
 > “It’s elementary, my dear…”
 
-Watson is a best practices application template for elementary OS 6 (Odin).
+__Watson is a best practices application template for elementary OS 6 (Odin).__
 
 ___Status: Alpha. Looking for feedback and input from the elementary OS community.__ For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions). For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
 

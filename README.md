@@ -4,7 +4,7 @@
 
 __Watson is a best practices application template for elementary OS 6 (Odin).__
 
-___Status: Alpha. Looking for feedback and input from the elementary OS community.__ For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions). For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
+___Status: Alpha.__ Looking for feedback and input from the elementary OS community. For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions). For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
 
 Watson will get you up and running with a single-window elementary OS 6 (Odin) app that complies with the [elementary OS Human Interface Guidelines](https://docs.elementary.io/hig/) and follows other elementary OS 6 conventions (e.g., [coding style](https://docs.elementary.io/develop/writing-apps/code-style)).
 

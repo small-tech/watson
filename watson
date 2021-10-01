@@ -105,7 +105,7 @@ function dry_run {
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
 current_step=0
-steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Ninja build' 'Delete self' 'Commit and push changes' 'Exit')
+steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Ninja build/install' 'Delete self' 'Commit and push changes' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -306,19 +306,13 @@ task/update-translations --no-status
 
 current_step=$(( current_step + 1 ))
 
-# Step 10: Ninja build.
+# Step 10: Ninja build and install.
+# (Since we have settings we need to install them after building the app so
+# we don’t get a runtime error.)
 
-task/build
+task/install
 
 current_step=$(( current_step + 1 ))
-
-# Install app.
-
-# When we have settings set up, we also have to
-# run task/install before the app can run properly with
-# settings enabled.
-
-# TODO
 
 # If this is a dry run (useful when developing/testing Watson itself),
 # then display the git status and information on how to revert the changes,

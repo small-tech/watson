@@ -105,7 +105,7 @@ function dry_run {
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
 current_step=0
-steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Ninja build/install' 'Delete self' 'Commit and push changes' 'Exit')
+steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Ninja build/install' 'Refresh system icon cache' 'Delete self' 'Commit and push changes' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -311,6 +311,14 @@ current_step=$(( current_step + 1 ))
 # we don’t get a runtime error.)
 
 task/install
+
+current_step=$(( current_step + 1 ))
+
+# Step 11: Refresh the system’s icon cache
+# (So the app’s icon displays correctly.)
+# See https://docs.elementary.io/develop/writing-apps/our-first-app/icons
+
+sudo update-icon-caches /usr/share/icons/*
 
 current_step=$(( current_step + 1 ))
 

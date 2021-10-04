@@ -12,6 +12,22 @@
 
 ## Developer notes
 
+### Getting started
+
+Clone this repository and run the install task:
+
+```shell
+task/install
+```
+
+You can now run the app from either the _Applications Menu_ or using the run task:
+
+```shell
+task/run
+```
+
+### About
+
 This project is written in [Vala](https://valadoc.org/) and follows the following elementary OS guidelines:
 
   - [Human Interface Guidelines](https://docs.elementary.io/hig/)
@@ -24,25 +40,28 @@ To get your system ready to develop for elementary OS, please see the [Basic Set
 
 ### Tasks
 
-#### Build
-
-The build task uses meson and ninja.
-
-```shell
-task/build
-```
-
 #### Install
 
-Note that you must install the app for settings-related features to work. Most often, you will use the run task, below.
+Configures and runs the build, installing settings-relateds features and also refreshing the icon cache.
+
+Run this after you clone this repository to get a working build.
 
 ```shell
 task/install
 ```
 
+#### Build
+
+Builds the project.
+
+```shell
+task/build
+```
+
+
 #### Run
 
-This task builds and installs your app and runs the executable.
+Builds and runs the executable.
 
 ```shell
 task/run
@@ -50,7 +69,7 @@ task/run
 
 #### Pack
 
-This task creates a Flatpak distribution.
+Creates a Flatpak distribution.
 
 ```shell
 task/pack

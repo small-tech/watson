@@ -2,10 +2,21 @@
 
 set -eu -o pipefail
 
+# Configure build.
+meson build --prefix=/usr
+
+# Create translations.
+task/update-translations --no-status
+
+# Run build and install assets.
 pushd build
-ninja && ninja install
+ninja
+ninja install
 popd
+
+# Clear icon caches.
+sudo update-icon-caches /usr/share/icons/*
 
 echo '{APP.NAME} is installed.'
 echo ''
-echo 'You can open it from the Applications Menu.'
+echo 'You can run it from the Applications Menu or using the task/run script.'

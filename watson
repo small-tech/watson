@@ -105,7 +105,7 @@ function dry_run {
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
 current_step=0
-steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Meson build' 'Create translations' 'Ninja build/install' 'Refresh system icon cache' 'Delete self' 'Commit and push changes' 'Exit')
+steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Configure, build, and install' 'Delete self' 'Commit and push changes' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -294,31 +294,9 @@ rm -r template
 
 current_step=$(( current_step + 1 ))
 
-# STEP 8: Meson build.
-
-meson build --prefix=/usr
-
-current_step=$(( current_step + 1 ))
-
-# STEP 9: Create translations.
-
-task/update-translations --no-status
-
-current_step=$(( current_step + 1 ))
-
-# Step 10: Ninja build and install.
-# (Since we have settings we need to install them after building the app so
-# we don’t get a runtime error.)
+# STEP 8: Configure, build and install.
 
 task/install
-
-current_step=$(( current_step + 1 ))
-
-# Step 11: Refresh the system’s icon cache
-# (So the app’s icon displays correctly.)
-# See https://docs.elementary.io/develop/writing-apps/our-first-app/icons
-
-sudo update-icon-caches /usr/share/icons/*
 
 current_step=$(( current_step + 1 ))
 
@@ -338,13 +316,13 @@ if ${dryRun}; then
   exit
 fi
 
-# Step 11: Delete self (goodbye, cruel world!)
+# Step 9: Delete self (goodbye, cruel world!)
 
 rm watson
 
 current_step=$(( current_step + 1 ))
 
-# Step 12: Commit and push changes.
+# Step 10: Commit and push changes.
 
 git add --all
 git commit -m "Finish customising app template"
@@ -352,7 +330,7 @@ git push
 
 current_step=$(( current_step + 1 ))
 
-# Step 13: Exit.
+# Step 11: Exit.
 
 # That’s it! Goodbye :)
 exit 0

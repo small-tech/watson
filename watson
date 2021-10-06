@@ -104,8 +104,8 @@ function dry_run {
 [[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
-current_step=0
-steps=('Install elementary OS development libaries' 'Install VSCodium extensions' 'Get GitHub details' 'App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Configure, build, and install' 'Delete self' 'Commit and push changes' 'Exit')
+current_step=1
+steps=('App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Configure, build, and install' 'Delete self' 'Commit and push changes' 'Exit')
 
 # Trap errors and handle them gracefully.
 #
@@ -126,67 +126,7 @@ trap 'handle_error ${LINENO} $? ' ERR
 
 readonly copyright_year=$(date '+%Y')
 
-# STEP 0: Install elementary OS development libraries (if necessary and desired).
-
-elementary_sdk_status=$(/usr/bin/dpkg-query --show --showformat='${db:Status-Status}\n' 'elementary-sdk' 2> /dev/null)
-if [[ $elementary_sdk_status != 'installed' ]]; then
-  install_elementary_sdk_question=$(zenity --question --text='<big>The elementary OS development libraries are not installed.</big>\n\n<b>Install them now?</b>' --title='Watson' --width=250 --icon-name=applications-development)
-  install_extensions=$?
-  if [[ $install_extensions == 0 ]]; then
-    sudo apt install elementary-sdk
-  fi
-else
-  echo '✓ elementary OS development libraries found.'
-fi
-
-current_step=$(( current_step + 1 ))
-
-# STEP 1: Install VSCodium extensions (if necessary and desired).
-
-# Is VSCodium installed? If not, we don’t need to bother the person with this.
-which_vscodium=$(which codium)
-vscodium_exists=$?
-if [[ ${vscodium_exists} == 0 ]]; then
-  # VSCodium is installed. Are all the extensions already installed? If so,
-  # we don’t need to bother the person with this.
-  already_installed_extensions_count=$(codium --list-extensions | grep -E "prince781.vala|asabil.meson|vadimcn.vscode-lldb|redhat.vscode-xml|redhat.vscode-yaml" | wc -l)
-  if [[ ${already_installed_extensions_count} != 5 ]]; then
-    # VSCodium is installed but one or more of the extensions that would
-    # make the person’s life easier aren’t. Ask the person if they’d
-    # like to have Watson install them.
-    install_extensions_question=$(zenity --question --text='<big>Install VSCodium extensions?</big>\n\n<i>(This will install the Vala, Meson, CodeLLDB debugger, XML, and YAML extensions. With the extensions installed, press F5 in VSCodium to run/debug your app.)</i>' --title='Watson' --width=250 --icon-name=extension)
-    install_extensions=$?
-    if [[ $install_extensions == 0 ]]; then
-      # Vala
-      # https://github.com/Prince781/vala-vscode
-      codium --install-extension prince781.vala
-
-      # Meson
-      # https://github.com/asabil/vscode-meson
-      codium --install-extension asabil.meson
-
-      # CodeLLDB: a native debugger extension based on LLDB.
-      # https://github.com/vadimcn/vscode-lldb
-      codium --install-extension vadimcn.vscode-lldb
-
-      # XML
-      # https://github.com/redhat-developer/vscode-xml
-      codium --install-extension redhat.vscode-xml
-
-      # YAML
-      # https://github.com/redhat-developer/vscode-yaml
-      codium --install-extension redhat.vscode-yaml
-    fi
-  else
-    echo '✓ VSCodium and all recommended extensions already installed.'
-  fi
-else
-  echo 'ℹ️ VSCodium not installed; skipping recommended extensions check.'
-fi
-
-current_step=$(( current_step + 1 ))
-
-# STEP 2: Get app details (1/2).
+# STEP 1: Get app details (1/2).
 
 app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
 
@@ -195,7 +135,7 @@ app_details_validator='^.+\|.+\|.+\|.+\|.+$'
 
 current_step=$(( current_step + 1 ))
 
-# STEP 3: Get app details (2/2) – categories (multi-select list).
+# STEP 2: Get app details (2/2) – categories (multi-select list).
 
 app_categories=$(zenity --list --width=400 --height=460 --multiple --separator=";" --title="Watson" --text="\n  <big><u><b>App Details (2/2)</b></u></big>\n\n  <i>You may select more than one.\n</i>" --column="Category" "AudioVideo" "Audio" "Video" "Development" "Education" "Game" "Graphics" "Network" "Office" "Science" "Settings" "System" "Utility")
 
@@ -204,7 +144,7 @@ app_categories_validator='^.+$'
 
 current_step=$(( current_step + 1 ))
 
-# STEP 4: Get copyright details.
+# STEP 3: Get copyright details.
 
 copyright_details_pipe_separated=$(zenity --forms --width=300 --title="Watson" --text="\n  <big><u>Copyright Details</u></big>  \n\n  <i>Copyright ⓒ ${copyright_year}-present <big>‹Name›</big> <big>‹Email›</big></i>\n" --add-entry="Name" --add-entry="Email")
 
@@ -213,7 +153,7 @@ copyright_details_validator='^.+\|.+$'
 
 current_step=$(( current_step + 1 ))
 
-# STEP 5: Parse responses.
+# STEP 4: Parse responses.
 
 # Parse the pipe-separated results returned from the Zenity dialogues into bash arrays.
 IFS='|' read -ra app_details <<< "${app_details_pipe_separated}"
@@ -243,7 +183,7 @@ copyright_email=${copyright_details[1]}
 
 current_step=$(( current_step + 1 ))
 
-# STEP 6: Perform substitutions.
+# STEP 5: Perform substitutions.
 
 # This is the list of files to carry out substituions in.
 # These files are all in the template/ directory.
@@ -274,7 +214,7 @@ git commit -m "Carry out template substitutions"
 
 current_step=$(( current_step + 1 ))
 
-# STEP 7: Rename files.
+# STEP 6: Rename files.
 
 mv com.github.ORG.APP.yml "com.github.${github_organisation}.${github_app}.yml"
 mv data/APP.appdata.xml.in "data/${github_app}.appdata.xml.in"
@@ -294,9 +234,9 @@ rm -r template
 
 current_step=$(( current_step + 1 ))
 
-# STEP 8: Configure, build and install.
+# STEP 7: Configure, build and install.
 
-task/install
+task/install --create-translations
 
 current_step=$(( current_step + 1 ))
 
@@ -316,13 +256,13 @@ if ${dryRun}; then
   exit
 fi
 
-# Step 9: Delete self (goodbye, cruel world!)
+# Step 8: Delete self (goodbye, cruel world!)
 
 rm watson
 
 current_step=$(( current_step + 1 ))
 
-# Step 10: Commit and push changes.
+# Step 9: Commit and push changes.
 
 git add --all
 git commit -m "Finish customising app template"
@@ -330,7 +270,7 @@ git push
 
 current_step=$(( current_step + 1 ))
 
-# Step 11: Exit.
+# Step 10: Exit.
 
 # That’s it! Goodbye :)
 exit 0

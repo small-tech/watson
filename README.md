@@ -2,7 +2,7 @@
 
 > “It’s elementary, my dear…”
 
-__Watson is a best practices application template for elementary OS 6 (Odin).__
+__Watson is a best-practices application template for elementary OS 6 (Odin).__
 
 ___Status: Alpha.__ Looking for feedback and input from the elementary OS community._
 
@@ -14,14 +14,29 @@ _For bug reports for Watson and generated projects, please [open an issue](https
 
 Watson gets you up and running quickly with a bare-bones single-window elementary OS 6 (Odin) app that is based on the [elementary OS Developer Documentation](https://docs.elementary.io/develop/) as well as a review of the conventions employed by the core apps that ship with elementary OS (like [Code](https://github.com/elementary/code/) and [Calculator](https://github.com/elementary/calculator)).
 
+It also makes it equally easy for developers to build and run your application on their own machines after they clone your project’s repository.
+
 When deciding what to include and what to leave out of the generated app, the guiding principle is to include base functionality expected of any elementary OS 6 app. The goal is for you to only have to add to the generated template, not remove from it or change the generated code for common types of apps (with the understanding that multi-window applications and highly custom apps might require a bit of fiddling).
 
 __Most importantly, the generated skeletal app complies with the [elementary OS Human Interface Guidelines](https://docs.elementary.io/hig/) and follows other recommended elementary OS 6 conventions like [coding style](https://docs.elementary.io/develop/writing-apps/code-style).__ _If you haven’t already done so, please read through both of those important resources before continuing. Also, to refer to language or library details during development, bookmark [Valadoc](https://valadoc.org/)._
 
 Once you’ve made the generated app your own by customising it and adding to it, you can submit it for inclusion in the elementary OS [AppCenter](https://docs.elementary.io/develop/appcenter/publishing-requirements) as a curated app.
 
-
 ___Watson is not a substitute for knowing what you’re doing.__ Watson is meant to lower the barrier of entry to creating an elementary OS application by automating the start of a new project to ensure you do not misconfigure your project or leave out important aspects (like window state preservation or translations). So, again, please read the above documents before starting to develop apps for elementary OS._
+
+## Goals
+
+1. The time from when a developer decides to make an elementary OS app to when they have a working project using Watson should be < 60 seconds.
+
+2. The time from when a developer clones a Watson-generated elementary OS application to when they have it up and running on their own machine should be < 60 seconds.
+
+Furthermore, the generated project must:
+
+  - Adhere to platform [human interface guidelines](https://docs.elementary.io/hig/), [conventions](https://docs.elementary.io/develop/writing-apps/code-style), and [other recommended practices](https://docs.elementary.io/develop/).
+
+  - Be [maintainable](https://www.oreilly.com/content/what-is-maintainability/).
+
+  - Adhere to [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (Don’t Repeat Yourself) principles.
 
 ## Getting started
 
@@ -48,27 +63,45 @@ ___Watson is not a substitute for knowing what you’re doing.__ Watson is meant
 
 ## What to expect
 
-### Pre-flight checks
-
-Watson will first check that you have the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) installed. These are required to create apps for elementary OS. If you don’t have them installed, Watson will ask you if you want to install them now.
-
-Next, Watson will check if you have [VSCodium](https://vscodium.com) installed. You do _not_ need to use VSCodium to create elementary OS apps. You can, for instance, use elementary OS [Code](https://docs.elementary.io/develop/writing-apps/the-basic-setup#code), which comes preinstalled, or a different third-party editor like [Builder](https://apps.gnome.org/en/app/org.gnome.Builder/). However, if you do have VSCodium installed, there are a number of extensions that will make creating your elementary OS app easier ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)). If Watson cannot find these extensions installed, it will ask you if you’d like to install them now. With these extensions installed, once you’ve initialised your project, you can simple open it in VSCodium and hit F5 to run/debug it (and you will get code intelligence, etc., for all your source files). Your project will also signal to VSCodium that these are recommended extensions.
-
-### Interactive sections
-
 Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers.
 
 It will also replace this README and the CHANGELOG with your application’s versions, recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.
 
-Watson will delete itself once it’s done, leaving only your project behind.
+Next, Watson will run the install task (`task/install`).
 
-That’s it!
+The install task is also what developers who clone your project will run to ensure that they can build and run your project.
 
-Now you can customise the template further to create your app, knowing you have a base that adheres to elementary OS guidelines.
+### The install task
 
-Before moving on, make sure you review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before you [submit your app](https://developer.elementary.io/).
+The install task first checks whether you have the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) installed and asks you to install them if it can’t find them.
 
-Enjoy and here’s hoping Watson will make it easier for you to start building excellent apps for elementary OS.
+> The elementary OS development libraries – also known as the elementary OS Software Development Kit (SDK) – are a [metapackage of elementary OS libraries](https://github.com/elementary/metapackages) required when creating apps for elementary OS. You can see which libraries are included in the SDK based on the architecture of your development machine by reviewing the following metapackage definitions: [AMD64](https://github.com/elementary/metapackages/blob/master/elementary-sdk-amd64), [ARM64](https://github.com/elementary/metapackages/blob/master/elementary-sdk-arm64), [ARMHF](https://github.com/elementary/metapackages/blob/master/elementary-sdk-armhf).
+
+Next, Watson will check if you have [VSCodium](https://vscodium.com) installed. If you do, it will check whether or not you have useful set of VSCodium extensions for elementary OS development installed and ask you to install them if you don’t.
+
+> You do _not_ need to use VSCodium to create elementary OS apps. You can, for instance, use elementary OS [Code](https://docs.elementary.io/develop/writing-apps/the-basic-setup#code), which comes preinstalled, or a different third-party editor like [Builder](https://apps.gnome.org/en/app/org.gnome.Builder/). However, if you do have VSCodium installed, there are a number of extensions that will make creating your elementary OS app easier ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)). If Watson cannot find these extensions installed, it will ask you if you’d like to install them now. With these extensions installed, once you’ve initialised your project, you can simple open it in VSCodium and hit <kbd>F5</kbd> to run/debug it and <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> → _Build all targets_ to rebuild it after making changes. You will also get code intelligence, etc., for all your source files. Finally, your project will also inform VSCodium of the set of recommended extensions for your project so even if you choose not to install them now, you can easily find and install them later yourself.
+
+### Post install
+
+Once the install task is done, Watson will delete itself, leaving only your project behind.
+
+It will also commit and push the changes to your git repository.
+
+___And that’s it!___
+
+At this point, your project is ready and you can customise the template further to create your app, knowing you have a base that adheres to elementary OS guidelines.
+
+You can also run your project using the run script:
+
+```
+task/run
+```
+
+Or, if you’re using VSCodium, just open your project and hit <kbd>F5</kbd> to run/debug it and <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> → _Build all targets_ to rebuild it after making changes.
+
+You can find more task scripts in the `task` folder of your project and the workflow is also documented in the README file that’s generated for your project.
+
+Here’s hoping Watson will make it easier for you to start building and maintaining excellent apps for elementary OS.
 
 ## What’s included?
 
@@ -138,6 +171,9 @@ Here are some quick links showing you how to add common functionality to your ap
 ## General resources
 
 At the risk of sounding like a broken record, please work your way through the [elementary OS Developer Documentation](https://docs.elementary.io/develop/)) and [elementary OS Human Interface Guidelines](https://docs.elementary.io/hig/) before starting to create an app for elementary OS 6.
+
+Also please review the AppCenter [publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before you [submit your app](https://developer.elementary.io/).
+
 
 Other important references include:
 

@@ -71,7 +71,7 @@ It will also replace this README and the CHANGELOG with your application’s ver
 
 Next, Watson will run the install task (`task/install`).
 
-The install task is also what developers who clone your project will run to ensure that they can build and run your project.
+> The install task is also what developers who clone your project will run to ensure that they can build and run your project.
 
 ### The install task
 

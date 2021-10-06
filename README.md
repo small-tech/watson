@@ -195,7 +195,7 @@ Other important references include:
 
 ## Get the wallpaper
 
-The wallpaper you see in the screenscast was commissioned for Watson from the singular [Margo de Weerdt](https://www.margodeweerdt.com/). And you’re welcome to download and use it in all its 4K glory on your own computer if you like.
+The wallpaper you see in the screencast was commissioned for Watson from the singular [Margo de Weerdt](https://www.margodeweerdt.com/). And you’re welcome to download and use it in all its 4K glory on your own computer if you like.
 
 There are three versions: The one you see in the header has a very shallow depth of field (what the cool kids call “bokeh”) There is also one with less bokeh as well as the original illustration by Margo without any of Aral’s meddling.
 

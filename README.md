@@ -6,11 +6,9 @@ __Watson is a best-practices application template for elementary OS 6 (Odin).__
 
 ___Status: Alpha.__ Looking for feedback and input from the elementary OS community._
 
-_For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions)._
-
-_For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
-
-__Want to jump right in? See [Getting Started](#getting-started).__
+  - _For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions)._
+  - _For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
+  - __Want to jump right in? See [Getting Started](#getting-started).__
 
 ## What Watson is (and what Watson is not).
 

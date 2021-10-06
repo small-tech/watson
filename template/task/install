@@ -109,9 +109,10 @@ meson build --prefix=/usr
 
 # Create translations.
 
-# (This only needs to be done on initial project generation, otherwirse it
-# results in a dirty git repository due to timestamps if run after a clone.)
-if [[ $1 == '--create-translations']]; then
+# (This only needs to be done on initial project generation, otherwise it
+# results in a dirty git repository due to timestamps if run after a clone.
+# The default is not to create/update translations on install.)
+if [[ ${1-'do-not-create-translations'} == '--create-translations' ]]; then
   task/update-translations --no-status
   echo '✓ Created translations.'
 fi

@@ -63,6 +63,8 @@ Furthermore, the generated project must:
 
 ## What to expect
 
+### Interactive app configuration screens
+
 Watson will ask for your app details in a series of graphical dialogue windows and update the necessary bits of the template files (application bundle IDs, asset paths, etc.) to customise them for your project based on your answers.
 
 It will also replace this README and the CHANGELOG with your application’s versions, recreate the git repository (so you start with a fresh history), make an initial commit, and set up your git remote so `origin` points to your repository.

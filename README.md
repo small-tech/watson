@@ -10,6 +10,8 @@ ___Status: Alpha.__ Looking for feedback and input from the elementary OS commun
   - _For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._
   - __Want to jump right in? See [Getting Started](#getting-started).__
 
+[Want the wallpaper?](#get-the-wallpaper)
+
 ## What Watson is (and what Watson is not).
 
 Watson gets you up and running quickly with a bare-bones single-window elementary OS 6 (Odin) app that is based on the [elementary OS Developer Documentation](https://docs.elementary.io/develop/) as well as a review of the conventions employed by the core apps that ship with elementary OS (like [Code](https://github.com/elementary/code/) and [Calculator](https://github.com/elementary/calculator)).
@@ -190,6 +192,28 @@ Other important references include:
   - [Valdo](https://github.com/Prince781/valdo) by [Princeton Ferro](https://github.com/Prince781) (of Vala Language Server fame. Make sure you watch his excellent [elementary Developer Weekend](https://edw.elementary.io) talk on [Improving App Development in Vala](https://edw.elementary.io/#improving-app-development-in-vala-by-princeton-ferro)). Valdo is an app that helps you create a new Vala project from a repository of templates. Valdo is not designed specifically for elementary OS but it does feature an elementary OS app template.
 
   - [Develop](https://github.com/alcadica/develop) is an app for elementary OS 5 (Hera) that has starters for apps, [Switchboard](https://github.com/elementary/switchboard) [Plugs](https://github.com/elementary?q=switchboard-plug#org-repositories), and [Wingpanel](https://github.com/elementary/wingpanel) indicators.
+
+## Get the wallpaper
+
+The wallpaper you see in the screenshot was commissioned for Watson from the singular [Margo de Weerdt](https://www.margodeweerdt.com/). And you’re welcome to download and use it in all its 4K glory on your own computer if you like.
+
+There are three versions: The one you see in the header has a very shallow depth of field (what the cool kids call “bokeh”) There is also one with less bokeh as well as the original illustration by Margo without any of Aral’s meddling.
+
+All three are released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please credit [Margo de Weerdt](https://www.margodeweerdt.com/) and [Watson](https://github.com/small-tech/watson) by [Small Technology Foundation](https://small-tech.org).
+
+### Original
+
+![Illustration, Sherlock Holmes, Watson, Enola Holmes and the three cats from Catts are in a swamp full of alligators. Sherlock is standing on a makeshift wooden bridge examining a bird (one foot on an alligator’s nose). Watson is in the swamp gathering more wood for the bridge. Enola and the blue cat are in a row boat in the background. The purple and green cats are on branches.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-by-margo-de-weerdt-small-technology-foundation.jpg)
+
+### Shallower depth of field
+
+![The same illustration as described in the original one, above, but with the background blurred.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-shallow-depth-of-field-by-margo-de-weerdt-small-technology-foundation.jpg)
+
+### Even shallower depth of field (did someone say bokeh?)
+
+![The same illustration as described in the shallower depth of field version, above, but with even shallower depth of field.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-even-shallower-depth-of-field-by-margo-de-weerdt-and-aral-balkan-small-technology-foundation.jpg)
+
+
 
 ## Like this? Fund us!
 

@@ -91,7 +91,7 @@ It will also commit and push the changes to your git repository.
 
 ___And that’s it!___
 
-At this point, your project is ready and you can customise the template further to create your app, knowing you have a base that adheres to elementary OS guidelines.
+At this point, your project is ready and you can customise the template further to create your own unique and wonderful app, knowing you have a base that adheres to elementary OS guidelines.
 
 You can also run your project using the run script:
 

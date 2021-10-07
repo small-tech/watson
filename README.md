@@ -4,6 +4,10 @@
 
 __Watson is a best-practices application template for elementary OS 6 (Odin).__
 
+[![Looping GIF of a snippet of Aral Balkan’s video introducing Watson.](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9710a275-8b39-40f9-b8c1-1c720883f364.gif?ClientID=vimeo-core-prod&Date=1633623413&Signature=b1d86a2778a3aa9e4ca472047355a6d4f43009be)](https://vimeo.com/625472483)
+
+[Watch the introductory screencast](https://vimeo.com/625472483).
+
 ___Status: Alpha.__ Looking for feedback and input from the elementary OS community._
 
   - _For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions)._

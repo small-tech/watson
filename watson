@@ -104,7 +104,7 @@ function dry_run {
 [[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run
 [[ $1 == '--help' || $1 == '-h' ]] && show_help
 
-current_step=1
+current_step=0
 steps=('App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Configure, build, and install' 'Delete self' 'Commit and push changes' 'Exit')
 
 # Trap errors and handle them gracefully.

@@ -6,7 +6,7 @@ pushd build
 ninja com.github.{GITHUB.ORG}.{GITHUB.APP}-pot
 ninja com.github.{GITHUB.ORG}.{GITHUB.APP}-update-po
 popd
-if [[ $1 != '--no-status' ]]; then
+if [[ $# == 0 || $1 != '--no-status' ]]; then
   git status
 fi
 

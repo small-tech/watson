@@ -42,7 +42,7 @@ To get your system ready to develop for elementary OS, please see the [Basic Set
 
 #### Install
 
-Configures and runs the build, installing settings-relateds features and also refreshing the icon cache.
+Configures and runs the build, installs settings-related features and translations and refreshes the icon cache.
 
 Run this after you clone this repository to get a working build.
 
@@ -58,7 +58,6 @@ Builds the project.
 task/build
 ```
 
-
 #### Run
 
 Builds and runs the executable.
@@ -67,12 +66,12 @@ Builds and runs the executable.
 task/run
 ```
 
-#### Pack
+#### Package
 
-Creates a Flatpak distribution.
+Creates a Flatpak package.
 
 ```shell
-task/pack
+task/package
 ```
 
 ### VSCodium

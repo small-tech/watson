@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+flatpak-builder build com.github.{GITHUB.ORG}.{GITHUB.APP}.yml --user --install --force-clean

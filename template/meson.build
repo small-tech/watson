@@ -20,6 +20,7 @@ executable(
     'src' / 'Application.vala',
     'src' / 'MainWindow.vala',
     'src' / 'Widgets' / 'HeaderBar.vala',
+    'src' / 'Constants' / 'Colours.vala',
     dependencies: [
       dependency('granite', version: '>=5.2.4'),
       dependency('gtk+-3.0'),

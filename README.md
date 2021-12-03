@@ -135,6 +135,8 @@ Here’s hoping Watson will make it easier for you to start building and maintai
 
   - [Colour scheme](https://docs.elementary.io/develop/apis/color-scheme) support (automatically uses person’s dark/light mode preference and updates the app’s appearance should they change it while the app is running).
 
+  - [elementary OS colours](https://elementary.io/brand#color) as constants. Refer to `Constants.Colors` (US spelling as used elsewhere in the libraries) in your app to access them.
+
   - [.desktop](https://docs.elementary.io/develop/writing-apps/our-first-app#the-desktop-file) file for information about your app that’s displayed in the Application Menu and Dock.
 
   - [AppData.xml](https://docs.elementary.io/develop/writing-apps/our-first-app#appdata-xml) file for information need to list your app in AppCenter.

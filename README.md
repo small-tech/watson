@@ -115,7 +115,7 @@ Here’s hoping Watson will make it easier for you to start building and maintai
 
   - A prompt to install the [elementary OS development libraries](https://docs.elementary.io/develop/writing-apps/the-basic-setup#development-libraries) if they don’t already exist on your machine.
 
-  - A prompt to install recommended [VSCodium](https://vscodium.com/) Vala development and debugging extensions ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)) if you have VSCodium installed and are missing any of them.
+  - A prompt to install recommended [VSCodium](https://vscodium.com/) Vala development and debugging extensions ([Vala](https://github.com/Prince781/vala-vscode), [Meson](https://github.com/asabil/vscode-meson), [CodeLLDB](https://github.com/vadimcn/vscode-lldb), [EditorConfig for VS Code](https://github.com/editorconfig/editorconfig-vscode), [XML](https://github.com/redhat-developer/vscode-xml), [YAML](https://github.com/redhat-developer/vscode-yaml)) if you have VSCodium installed and are missing any of them.
 
   - VSCodium [launch.json](https://charlesagile.com/vscode-launch-json-and-the-debug-console) for [CodeLLDB](https://github.com/vadimcn/vscode-lldb) (press F5 to run/debug your project in VSCodium).
 

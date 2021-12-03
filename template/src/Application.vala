@@ -15,6 +15,49 @@ namespace {APP.NAMESPACE} {
             );
 
             saved_state = new GLib.Settings ("com.github.{GITHUB.ORG}.{GITHUB.APP}.saved-state");
+
+            // Command-line options.
+
+            // If your app takes command-line arguments, you can specify it
+            // using the set_option_context_parameter_string () method.
+            // (The option context parameter string is displayed next to the
+            // list of options on the first line of the --help screen.)
+
+            // Display the app description as the option context summary.
+            // The option context summary is displayed above the set of options
+            // on the --help screen.
+            set_option_context_summary (_({APP.DESCRIPTION}));
+
+            // Display the copyright notice as the option context description.
+            // The option context description is displayed below the set of options
+            // on the --help screen.
+            set_option_context_description (_("Copyright ⓒ {COPYRIGHT.YEAR}-present {COPYRIGHT.NAME}. Licensed under GNU GPL version 3.0."));
+
+            // Add option: --version, -v
+            add_main_option(
+                "version", 'v',
+                GLib.OptionFlags.NONE,
+                GLib.OptionArg.NONE,
+                _("Show version number and exit"),
+                null
+            );
+
+            // Signal: Handle local options.
+            handle_local_options.connect((application, options) => {
+                // Handle option: --version, -v:
+                //
+                // Print a minimal version string based on the GNU coding standards.
+                // https://www.gnu.org/prep/standards/standards.html#g_t_002d_002dversion
+                if (options.contains("version")) {
+                    print (@"{APP.NAME} $(Constants.Config.VERSION)\n");
+
+                    // OK.
+                    return 0;
+                }
+
+                // Let the system handle any other command-line options.
+                return -1;
+            });
         }
 
         construct {

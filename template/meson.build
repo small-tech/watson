@@ -5,6 +5,17 @@ gnome = import('gnome')
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language: 'c')
 
+conf_data = configuration_data()
+conf_data.set_quoted('PROJECT_NAME', meson.project_name())
+conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+conf_data.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
+conf_data.set_quoted('VERSION', meson.project_version())
+config_header = configure_file(
+    input : 'src' / 'Constants' / 'Config.vala.in',
+    output : 'Config.vala',
+    configuration : conf_data
+)
+
 # Custom resource support.
 # Place custom icons, etc. in the data/ directory
 # and add them to data/gresource.xml.

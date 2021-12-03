@@ -17,6 +17,14 @@ namespace {APP.NAMESPACE} {
             saved_state = new GLib.Settings ("com.github.{GITHUB.ORG}.{GITHUB.APP}.saved-state");
         }
 
+        construct {
+            // Initialise localisation.
+            GLib.Intl.setlocale (LocaleCategory.ALL, "");
+            GLib.Intl.bindtextdomain (Constants.Config.GETTEXT_PACKAGE, Constants.Config.LOCALEDIR);
+            GLib.Intl.bind_textdomain_codeset (Constants.Config.GETTEXT_PACKAGE, "UTF-8");
+            GLib.Intl.textdomain (Constants.Config.GETTEXT_PACKAGE);
+        }
+
         protected override void activate () {
             // Ensure there is only one window and show it.
             MainWindow window;

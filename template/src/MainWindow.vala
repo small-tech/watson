@@ -63,10 +63,6 @@ namespace {APP.NAMESPACE} {
 
         // This constructor will be called every time an instance of this class is created.
         construct {
-            // Use the person’s preferred color scheme.
-            // See: https://docs.elementary.io/develop/apis/color-scheme
-            use_preferred_color_scheme ();
-
             // State preservation: save window dimensions and location on window close.
             // See: https://docs.elementary.io/hig/user-workflow/closing
             set_up_state_preservation ();
@@ -156,23 +152,6 @@ namespace {APP.NAMESPACE} {
             int x, y;
             get_position (out x, out y);
             {APP.NAMESPACE}.saved_state.set ("window-position", "(ii)", x, y);
-        }
-
-        // Color scheme.
-
-        private void use_preferred_color_scheme () {
-            // Set color scheme of app based on person’s preference.
-            var granite_settings = Granite.Settings.get_default ();
-            var gtk_settings = Gtk.Settings.get_default ();
-            gtk_settings.gtk_application_prefer_dark_theme
-                = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
-
-            // Listen for changes in person’s color scheme settings
-            // and update color scheme of app accordingly.
-            granite_settings.notify["prefers-color-scheme"].connect (() => {
-                gtk_settings.gtk_application_prefer_dark_theme
-                    = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
-            });
         }
 
         // Actions.

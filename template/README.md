@@ -74,6 +74,14 @@ Creates a Flatpak package.
 task/package
 ```
 
+#### Run Package
+
+Creates and runs a Flatpak package.
+
+```shell
+task/run-package
+```
+
 ### VSCodium
 
 You do _not_ need to use [VSCodium](https://vscodium.com) to create elementary OS apps.

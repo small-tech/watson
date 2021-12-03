@@ -97,7 +97,9 @@ If you have the Meson and CodeLLDB extensions installed, you can run and debug t
 
 ## Submitting the app
 
-Please make sure you [review the AppCenter publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before [submitting the app](https://developer.elementary.io/) to the [elementary OS AppCenter](https://appcenter.elementary.io/).
+Please make sure you [review the AppCenter publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) <strike>before [submitting the app](https://developer.elementary.io/) to the [elementary OS AppCenter](https://appcenter.elementary.io/).</strike>* before opening a pull request on the [AppCenter Reviews repository](https://github.com/elementary/appcenter-reviews).
+
+_\* The elementary OS AppCenter dashboard is currently broken. The version currently linked to from the elementary OS Developer site is for elementary OS 5, not 6. However, if you want to monetise your app, you still have to use that and then submit the pull request. If you know [Elixir](https://elixir-lang.org/), you might want to [contribute to finishing off the AppCenter dashboard for elementary OS 6](https://github.com/elementary/appcenter-reviews)._
 
 ## It’s elementary, my dear…
 

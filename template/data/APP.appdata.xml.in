@@ -14,4 +14,58 @@
   <description>
     <p>{APP.DESCRIPTION}</p>
   </description>
+  <developer_name>{COPYRIGHT.NAME}</developer_name>
+  <launchable type="desktop-id">com.github.{GITHUB.ORG}.{GITHUB.APP}.desktop</launchable>
+
+  <!--
+    Do not uncomment or change the icon line, below. Its state is automatically
+    managed by the task/preview-in-appcenter script as necessary. If you uncomment it
+    manually, your Flatpak package attempts will fail.
+  -->
+  <!-- <icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon> -->
+
+  <custom>
+    <!--
+      Customise these settings to change the colours in your AppCenter listing.
+      You can preview how your app will look in the elementary OS AppCenter
+      by running the task/preview-in-appcenter script.
+
+      You can find the elementary OS colour codes in src/Constants/Colors.vala.
+
+      The defaults, below, using Slate 700 as the background and Silver 100
+      as the foreground.
+    -->
+    <value key="x-appcenter-color-primary">#273445</value>
+    <value key="x-appcenter-color-primary-text">#fafafa</value>
+
+    <!--
+      Uncomment the following two lines if you want to monetise your app.
+      https://github.com/elementary/houston/wiki/Monetizing-Your-App
+
+      Note that the stripe publishable/public key is NOT your account’s main key.
+
+      There is currently a bit of confusion about how this should be set.
+      Follow the discussion on this pull request for Comet for the latest
+      details:
+
+      https://github.com/elementary/appcenter-reviews/pull/225#issuecomment-984829417
+    -->
+    <!--
+    <value key="x-appcenter-suggested-price">1</value>
+    <value key="x-appcenter-stripe"></value>
+    -->
+  </custom>
+
+  <!-- Links. -->
+  <url type="homepage">https://github.com/{GITHUB.ORG}/{GITHUB.APP}</url>
+  <url type="bugtracker">https://github.com/{GITHUB.ORG}/{GITHUB.APP}/issues</url>
+  <url type="help">https://github.com/{GITHUB.ORG}/{GITHUB.APP}#readme</url>
+
+  <!--
+    If you accept donations, you can uncomment the line below and add a URL
+    to your donation page.
+  -->
+  <!-- <url type="donation"></url> -->
+
+  <update_contact>{COPYRIGHT.EMAIL}</update_contact>
 </component>

@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+
+########################################################################################
+#
+# task/screenshots
+#
+# Take localised screenshots of the app for the elementary OS AppCenter.
+#
+# This basic script simply launches your app in supported localisations (based on
+# your project data) and takes a single screenshot of the launch screen.
+#
+# You can extend it to take multiple screenshots, set your app state, etc.
+#
+# For an example of an advanced configuration that takes multiple screenshots and
+# even includes a chroma key to show context menus without sacrificing soft drop
+# shadows, please see the version of the script used in Comet app:
+#
+# https://github.com/small-tech/comet/blob/main/task/take-screenshots
+#
+# Copyright ⓒ 2021-present Aral Balkan, Small Technology Foundation.
+# Released under GNU GPL version 3.0.
+#
+########################################################################################
+
+# Configuration.
+
+# Map of languges to keyboard maps (used by setxkbmap to set the keyboard map
+# before xdotool types in a localised string).
+declare -A languages_to_keyboard_layouts=( ["en"]="us(mac)" ["tr"]="tr(alt)" )
+
+# Map of languages to full language codes (without the full codes, the correct dictionary
+# is loaded for some languages. For example, when launched with LANGUAGE=tr git commit -a, the
+# Turkish dictionary is not picked up. However, when launched with LANGUAGE=tr_TR.utf8 commit -a,
+# it is. To check what you should map the language code to here, look in /usr/share/hunspell/ and
+# map it to the exact name of the file that exists for the language.
+declare -A languages_to_full_language_codes=( ["en"]="en" ["tr"]="tr_TR.utf8")
+
+#
+# Setup.
+#
+
+echo -e "\n• Building and installing app (will require sudo password)."
+
+# Make sure we have a current build of Comet and that the transations
+# are installed.
+task/install
+
+echo -e "• Backing up text scaling factor."
+
+# Back up the current text scaling factor so we can restore it at the end.
+initial_text_scaling_factor=$(gsettings get org.gnome.desktop.interface text-scaling-factor)
+
+# Get list of localisation languages from app data.
+languages=("en")
+
+for language_file_name in $(ls po); do
+    # Note: the extension test is necessary in addition to the mime-type test
+    # as .pot files are reported with the same mime-type as .po files and we
+    # only want to process the latter.
+    test "${language_file_name: -3}" = ".po" && test "$(file --mime-type -b po/${language_file_name})" = "text/x-po" && {
+    languages+=("${language_file_name::2}")
+    }
+done;
+
+echo -e "• Setting text scaling factor to 1."
+
+# Set the text scaling factor to ensure consistent screenshot size.
+gsettings set org.gnome.desktop.interface text-scaling-factor 1
+
+echo -e "\n╭───────────────────────────────────────────────────────────────────╮"
+echo -e "│ Taking screenshots… PLEASE DO NOT TOUCH THE SYSTEM UNTIL COMPLETE. │"
+echo -e "╰───────────────────────────────────────────────────────────────────╯\n"
+
+#
+# Take localised screenshots.
+#
+
+for language in ${languages[*]}; do
+    echo -e "\n• ${language}"
+    echo -e "  ==\n"
+
+    echo "  • Initialising."
+
+    # Ensure the directory for the language exists and is empty.
+    # If you are going to have a lot of screenshots, you might want to change
+    # this to use a different repository. For example, Comet app has a separate
+    # repository at https://github.com/small-tech/comet-screenshots
+    language_directory="screenshots/${language}"
+    mkdir -p "${language_directory}"
+
+    echo -e "  • Screenshot: Basic usage (light and dark style)\n"
+
+    echo -e "      › Light style"
+
+    echo -e "          » Switching system to light colour scheme."
+
+    busctl set-property org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 io.elementary.pantheon.AccountsService PrefersColorScheme i 0
+
+    echo -e "          » Launching app."
+
+    LANGUAGE="${languages_to_full_language_codes[$language]}" build/com.github.{GITHUB.ORG}.{GITHUB.APP} &
+    sleep 1
+    xdotool search --onlyvisible --class {GITHUB.APP} windowactivate
+
+    echo -e "          » Taking screenshot."
+
+    gnome-screenshot --window --include-border --file "${language_directory}/light.png"
+    sleep 1
+
+    echo -e "          » Quiting app."
+
+    xdotool key Ctrl+q
+    sleep 1
+
+    echo -e "      › Done."
+
+    echo -e "      › Dark style"
+
+    echo -e "          » Switching system to dark colour scheme."
+
+    busctl set-property org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 io.elementary.pantheon.AccountsService PrefersColorScheme i 1
+
+    echo -e "          » Launching app."
+
+    LANGUAGE="${languages_to_full_language_codes[$language]}" build/com.github.{GITHUB.ORG}.{GITHUB.APP} &
+    sleep 1
+    xdotool search --onlyvisible --class {GITHUB.APP} windowactivate
+
+    echo -e "          » Taking screenshot."
+
+    gnome-screenshot --window --include-border --file "${language_directory}/dark.png"
+    sleep 1
+
+    echo -e "          » Quiting app."
+
+    xdotool key Ctrl+q
+    sleep 1
+
+    echo -e "      › Done."
+
+    echo -e "      › Creating montage of the light and dark style."
+
+    # Create montage of light and dark mode using a slanted split-screen effect
+    # based on the golden mean and maintaining the original soft drop shadow.
+    # TODO: Test this. I have a feeling the -size isn’t going to work.
+    magick \
+    \( "${language_directory}/light.png" +write mpr:light \) \
+    \( "${language_directory}/dark.png" mpr:light \( -size %[fx:w]x%[fx:h] xc:white -draw "stroke None fill Black path 'M %[fx:w/1.618],0 L %[fx:w-w/1.618],%[fx:h] L %[fx:w],%[fx:h] L %[fx:w],0 Z'" \) -alpha Off -composite +write mpr:montage \) \
+    \( mpr:montage \( mpr:light -alpha extract \) -compose CopyOpacity -composite +write "${language_directory}/light-and-dark.png" \) \
+    null:
+
+    echo -e "      › Done."
+done;
+
+echo -e "\n• Restoring initial text scaling factor."
+
+gsettings get org.gnome.desktop.interface text-scaling-factor "${initial_text_scaling_factor}"
+
+echo -e "\nDone!\n\nYou can find the screenshots in the screenshots folder."

@@ -76,6 +76,10 @@ if [[ ${vscodium_exists} == 0 ]]; then
       # https://github.com/vadimcn/vscode-lldb
       codium --install-extension vadimcn.vscode-lldb
 
+      # EditorConfig support
+      # https://github.com/editorconfig/editorconfig-vscode
+      codium --install-extension editorconfig.editorconfig
+
       # XML
       # https://github.com/redhat-developer/vscode-xml
       codium --install-extension redhat.vscode-xml

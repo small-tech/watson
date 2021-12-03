@@ -217,8 +217,6 @@ All three are released under the [Creative Commons Attribution-NonCommercial-Sha
 
 ![The same illustration as described in the shallower depth of field version, above, but with even shallower depth of field.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-even-shallower-depth-of-field-by-margo-de-weerdt-and-aral-balkan-small-technology-foundation.jpg)
 
-
-
 ## Like this? Fund us!
 
 [Small Technology Foundation](https://small-tech.org) is a tiny, independent not-for-profit.

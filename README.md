@@ -20,7 +20,9 @@ ___Status: Alpha → Beta.__ (Fri, Dec 3, 2021) Porting what I’ve learned and 
 
 Watson gets you up and running quickly with a bare-bones single-window elementary OS 6 (Odin) app that is based on the [elementary OS Developer Documentation](https://docs.elementary.io/develop/) as well as a review of the conventions employed by the core apps that ship with elementary OS (like [Code](https://github.com/elementary/code/) and [Calculator](https://github.com/elementary/calculator)).
 
-It also makes it equally easy for developers to build and run your application on their own machines after they clone your project’s repository.
+It also makes it equally easy for other developers to build and run your application on their own machines after they clone your project’s repository.
+
+Finally, it includes a number of scripts – to create and run Flatpak packages, update translations, and even take screenshots of your app and preview your app in AppCenter – that make the everyday tasks of working with your application easier.
 
 When deciding what to include and what to leave out of the generated app, the guiding principle is to include base functionality expected of any elementary OS 6 app. The goal is for you to only have to add to the generated template, not remove from it or change the generated code for common types of apps (with the understanding that multi-window applications and highly custom apps might require a bit of fiddling).
 
@@ -156,6 +158,8 @@ Here’s hoping Watson will make it easier for you to start building and maintai
   - The recommended [EditorConfig](https://docs.elementary.io/develop/writing-apps/code-style#editorconfig) for elementary OS Code and other compatible editors for enforcing the suggested [code style](https://docs.elementary.io/develop/writing-apps/code-style).
 
   - Basic [.gitignore file](https://git-scm.com/docs/gitignore) that ensures build directories are not accidentally added to your project.
+
+  - Task for building and running the app (with Meson/Ninja and with Flatpak), updating translations, taking localised screenshots, and previewing your app locally in the elementary OS AppCenter (with support for localisations).
 
 ## What’s _not_ included?
 

@@ -97,7 +97,9 @@ However, if you do have VSCodium installed, there are a number of extensions tha
   - [XML](https://github.com/redhat-developer/vscode-xml) (`codium --install-extension redhat.vscode-xml`)
   - [YAML](https://github.com/redhat-developer/vscode-yaml) (`codium --install-extension redhat.vscode-yaml`)
 
-If you have the Meson and CodeLLDB extensions installed, you can run and debug the app using the Run and Debug feature (or just hit <kbd>F5</kbd>.)
+With the Meson and CodeLLDB extensions installed, press <kbd>Control</kbd> + <kbd>Shift</kbd> + B → _Build all targets_ to build and <kbd>F5</kbd> to run and debug.
+
+If you need to pass command-line arguments to your app while testing, you can do so by specifying them in [your app’s VSCodium launch configuration](.vscode/launch.json).
 
 ## Continuous integration
 

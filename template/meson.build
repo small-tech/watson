@@ -1,4 +1,9 @@
-project('com.github.{GITHUB.ORG}.{GITHUB.APP}', 'vala', 'c')
+project(
+    'com.github.{GITHUB.ORG}.{GITHUB.APP}',
+    'vala',
+    'c',
+    version: '1.0.0'
+)
 
 i18n = import('i18n')
 gnome = import('gnome')

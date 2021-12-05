@@ -128,7 +128,7 @@ readonly copyright_year=$(date '+%Y')
 
 # STEP 1: Get app details (1/2).
 
-app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Description" --add-entry="Tooltip text (comment)" --add-entry="Keywords (separated;by;semicolons)")
+app_details_pipe_separated=$(zenity --forms --height=260 --title="Watson" --text="\n  <big><u>App details (1/2)</u></big>" --add-entry="Name:" --add-entry="Generic Name (e.g., Web Browser):" --add-entry="Summary/comment (purpose)" --add-entry="Description" --add-entry="Keywords (separated;by;semicolons)")
 
 app_details_validator='^.+\|.+\|.+\|.+\|.+$'
 [[ $app_details_pipe_separated =~ $app_details_validator ]] || show_validation_error
@@ -169,8 +169,8 @@ github_app=${github_app_original//'-'/'_'}
 
 app_name=${app_details[0]}
 app_generic_name=${app_details[1]}
-app_description=${app_details[2]}
-app_comment=${app_details[3]}
+app_comment=${app_details[2]}
+app_description=${app_details[3]}
 app_keywords=${app_details[4]}
 
 # The namespace is calculated by removing spaces from the app name.

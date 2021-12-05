@@ -10,7 +10,7 @@
   -->
   <content_rating type="oars-1.1" />
   <name>{APP.NAME}</name>
-  <summary>{APP.DESCRIPTION}</summary>
+  <summary>{APP.COMMENT}</summary>
   <description>
     <p>{APP.DESCRIPTION}</p>
   </description>

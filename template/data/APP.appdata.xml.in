@@ -68,4 +68,32 @@
   <!-- <url type="donation"></url> -->
 
   <update_contact>{COPYRIGHT.EMAIL}</update_contact>
+
+  <!--
+    Screenshots
+
+      - To generate the default screenshot, run the task/take-screenshots script.
+        Make sure you add, commit, and push the generated screenshots directory
+        to GitHub before previewing your app in the elementary OS AppCenter.
+
+        If you have many localisations and screenshots, it might make sense to
+        modify this script so that it saves them to a separate screenshots
+        repository so as to keep from bloating your app’s repository.
+
+        For an example of this, see Comet’s screenshots script:
+
+        https://github.com/small-tech/comet/blob/main/task/take-screenshots#L175
+
+      - To preview your app locally in the elementary OS AppCenter, run
+        the task/preview-in-appcenter script.
+
+      If you have localisations, the take-screenshots task will take localised
+      screenshots but you will have to add them manually to this file. For an
+      example of this, see Comet’s app metadata:
+
+      https://github.com/small-tech/comet/blob/main/data/comet.appdata.xml.in#L39
+  -->
+  <screenshot type="default">
+    <image>https://raw.githubusercontent.com/{GITHUB.ORG}/{GITHUB.APP}/main/en/light-and-dark.png</image>
+  </screenshot>
 </component>

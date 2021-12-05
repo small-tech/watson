@@ -92,6 +92,8 @@ For ideas on how to customise this script for more complicated screenshots, see 
 task/take-screenshots
 ```
 
+> You must push the generated screenshots folder to your GitHub repository before the screenshot will appear when you preview your app in AppCenter.
+
 #### Preview in AppCenter
 
 Launches app locally in AppCenter so you can preview how it will look when published.

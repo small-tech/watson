@@ -26,14 +26,14 @@
 
 # Map of languges to keyboard maps (used by setxkbmap to set the keyboard map
 # before xdotool types in a localised string).
-declare -A languages_to_keyboard_layouts=( ["en"]="us(mac)" ["tr"]="tr(alt)" )
+declare -A languages_to_keyboard_layouts=( ["en"]="us(mac)" )
 
 # Map of languages to full language codes (without the full codes, the correct dictionary
 # is loaded for some languages. For example, when launched with LANGUAGE=tr git commit -a, the
 # Turkish dictionary is not picked up. However, when launched with LANGUAGE=tr_TR.utf8 commit -a,
 # it is. To check what you should map the language code to here, look in /usr/share/hunspell/ and
 # map it to the exact name of the file that exists for the language.
-declare -A languages_to_full_language_codes=( ["en"]="en" ["tr"]="tr_TR.utf8")
+declare -A languages_to_full_language_codes=( ["en"]="en" )
 
 #
 # Setup.
@@ -142,10 +142,12 @@ for language in ${languages[*]}; do
 
     # Create montage of light and dark mode using a slanted split-screen effect
     # based on the golden mean and maintaining the original soft drop shadow.
-    # TODO: Test this. I have a feeling the -size isn’t going to work.
+
+    screenshot_dimensions="$(magick ${language_directory}/light.png -ping -format "%wx%h" info:)"
+
     magick \
     \( "${language_directory}/light.png" +write mpr:light \) \
-    \( "${language_directory}/dark.png" mpr:light \( -size %[fx:w]x%[fx:h] xc:white -draw "stroke None fill Black path 'M %[fx:w/1.618],0 L %[fx:w-w/1.618],%[fx:h] L %[fx:w],%[fx:h] L %[fx:w],0 Z'" \) -alpha Off -composite +write mpr:montage \) \
+    \( "${language_directory}/dark.png" mpr:light \( -size "${screenshot_dimensions}" xc:white -draw "stroke None fill Black path 'M %[fx:w/1.618],0 L %[fx:w-w/1.618],%[fx:h] L %[fx:w],%[fx:h] L %[fx:w],0 Z'" \) -alpha Off -composite +write mpr:montage \) \
     \( mpr:montage \( mpr:light -alpha extract \) -compose CopyOpacity -composite +write "${language_directory}/light-and-dark.png" \) \
     null:
 
@@ -154,6 +156,6 @@ done;
 
 echo -e "\n• Restoring initial text scaling factor."
 
-gsettings get org.gnome.desktop.interface text-scaling-factor "${initial_text_scaling_factor}"
+gsettings set org.gnome.desktop.interface text-scaling-factor "${initial_text_scaling_factor}"
 
 echo -e "\nDone!\n\nYou can find the screenshots in the screenshots folder."

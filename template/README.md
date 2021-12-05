@@ -99,7 +99,7 @@ However, if you do have VSCodium installed, there are a number of extensions tha
 
 With the Meson and CodeLLDB extensions installed, press <kbd>Control</kbd> + <kbd>Shift</kbd> + B → _Build all targets_ to build and <kbd>F5</kbd> to run and debug.
 
-If you need to pass command-line arguments to your app while testing, you can do so by specifying them in [your app’s VSCodium launch configuration](.vscode/launch.json).
+If you need to pass command-line arguments to your app while testing, you can do so by specifying them in the `"args": []` array of [your app’s VSCodium launch configuration](.vscode/launch.json).
 
 ## Continuous integration
 

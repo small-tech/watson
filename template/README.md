@@ -82,6 +82,26 @@ Creates and runs a Flatpak package.
 task/run-package
 ```
 
+#### Take screenshots
+
+Takes screenshots of your app in both the light and dark colour schemes and also creates a montage of the two for use in the AppCenter.
+
+For ideas on how to customise this script for more complicated screenshots, see [the take-screenshots script for Comet](https://github.com/small-tech/comet/blob/main/task/take-screenshots).
+
+```shell
+task/take-screenshots
+```
+
+#### Preview in AppCenter
+
+Launches app locally in AppCenter so you can preview how it will look when published.
+
+Optionally, you can specify a language code (e.g., `tr_TR`) to preview a specific localisation.
+
+```shell
+task/preview-in-appcenter <language-code>
+```
+
 ### VSCodium
 
 You do _not_ need to use [VSCodium](https://vscodium.com) to create elementary OS apps.

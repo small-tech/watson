@@ -2,7 +2,7 @@
 
 > “It’s elementary, my dear…”
 
-__Watson is a best-practices application template for elementary OS 6 (Odin).__
+__A best-practices application template for elementary OS 6 (Odin).__
 
 [![Looping GIF of a snippet of Aral Balkan’s video introducing Watson.](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9710a275-8b39-40f9-b8c1-1c720883f364.gif?ClientID=vimeo-core-prod&Date=1633623413&Signature=b1d86a2778a3aa9e4ca472047355a6d4f43009be)](https://vimeo.com/625472483)
 

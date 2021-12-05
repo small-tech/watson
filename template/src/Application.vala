@@ -120,5 +120,11 @@ namespace {APP.NAMESPACE} {
 
             return new Application ().run (commandline_arguments);
         }
+
+        // Used to remove the standard elementary OS 6 (Odin) warnings
+        // when running as Flatpak. (See above.)
+        private static LogWriterOutput logWriterFunc (LogLevelFlags log_level, [CCode (array_length_type = "gsize")] LogField[] fields) {
+            return log_level == LogLevelFlags.LEVEL_MESSAGE ? LogWriterOutput.HANDLED : LogWriterOutput.UNHANDLED;
+        }
     }
 }

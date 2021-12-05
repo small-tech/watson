@@ -8,7 +8,7 @@ __A best-practices application template for elementary OS 6 (Odin).__
 
 [Watch the introductory screencast](https://vimeo.com/625472483).
 
-___Status: Alpha → Beta.__ (Fri, Dec 3, 2021) Porting what I’ve learned and created back from [Comet](https://github.com/small-tech/comet)._
+___Status: Alpha → Beta.__ (Sun, Dec 5, 2021) Porting what I’ve learned and created back from [Comet](https://github.com/small-tech/comet)._
 
   - _For feedback, ideas, and suggestions, please see [Discussions](https://github.com/small-tech/watson/discussions)._
   - _For bug reports for Watson and generated projects, please [open an issue](https://github.com/small-tech/watson/issues)._

@@ -26,7 +26,7 @@ namespace {APP.NAMESPACE} {
             // Display the app description as the option context summary.
             // The option context summary is displayed above the set of options
             // on the --help screen.
-            set_option_context_summary (_({APP.DESCRIPTION}));
+            set_option_context_summary (_("{APP.DESCRIPTION}"));
 
             // Display the copyright notice as the option context description.
             // The option context description is displayed below the set of options

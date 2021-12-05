@@ -93,6 +93,7 @@ However, if you do have VSCodium installed, there are a number of extensions tha
   - [Vala](https://github.com/Prince781/vala-vscode) (`codium --install-extension prince781.vala`)
   - [Meson](https://github.com/asabil/vscode-meson) (`codium --install-extension asabil.meson`)
   - [CodeLLDB](https://github.com/vadimcn/vscode-lldb) (`codium --install-extension vadimcn.vscode-lldb`)
+  - [EditorConfig](https://github.com/editorconfig/editorconfig-vscode) (`codium --install-extension editorconfig.editorconfig`)
   - [XML](https://github.com/redhat-developer/vscode-xml) (`codium --install-extension redhat.vscode-xml`)
   - [YAML](https://github.com/redhat-developer/vscode-yaml) (`codium --install-extension redhat.vscode-yaml`)
 

@@ -8,7 +8,7 @@
 
 ## System requirements
 
-  - [Elementary OS](https://elementary.io) 6 (Odin)
+  - [elementary OS](https://elementary.io) 6 (Odin)
 
 ## Developer notes
 

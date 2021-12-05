@@ -8,7 +8,7 @@ __A best-practices application template for elementary OS 6 (Odin).__
 
 [Watch the introductory screencast](https://vimeo.com/625472483).
 
-___Status: Beta.__
+__Status: Beta.__
 
 I’ve now backported everything I learned and created while making [Comet](https://github.com/small-tech/comet) into Watson.
 

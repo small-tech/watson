@@ -8,6 +8,12 @@ namespace {APP.NAMESPACE} {
 
     public class Application : Gtk.Application {
 
+        // This is information about the app that can be useful for
+        // introspection when the app is running as a Flatpak.
+        public static string binary_path;
+        public static string flatpak_id;
+        public static bool is_running_as_flatpak;
+
         public Application () {
             Object(
                 application_id: "com.github.{GITHUB.ORG}.{GITHUB.APP}",
@@ -101,6 +107,17 @@ namespace {APP.NAMESPACE} {
         }
 
         public static int main (string[] commandline_arguments) {
+            flatpak_id = Environment.get_variable ("FLATPAK_ID");
+            is_running_as_flatpak = flatpak_id != null;
+
+            // This removes the Gtk-Message: Failed to load module "canberra-gtk-module"
+            // that plagues every elementary OS 6 (Odin) app at the moment when
+            // running via Flatpak.
+            if (is_running_as_flatpak) {
+                Log.set_writer_func (logWriterFunc);
+            }
+            binary_path = File.new_for_path (commandline_arguments[0]).get_path();
+
             return new Application ().run (commandline_arguments);
         }
     }

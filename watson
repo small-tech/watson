@@ -194,6 +194,8 @@ pushd template
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do
+  sed -i "s/{GITHUB.ORG.ORIGINAL}/${github_organisation_original}/g" "${file}"
+  sed -i "s/{GITHUB.APP.ORIGINAL}/${github_app_original}/g" "${file}"
   sed -i "s/{GITHUB.ORG}/${github_organisation}/g" "${file}"
   sed -i "s/{GITHUB.APP}/${github_app}/g" "${file}"
   sed -i "s/{APP.NAMESPACE}/${app_namespace}/g" "${file}"

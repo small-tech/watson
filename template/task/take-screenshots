@@ -22,6 +22,31 @@
 #
 ########################################################################################
 
+# Dependencies.
+
+# Check that gnome-screenshot and ImageMagick 7 are installed and install
+# them if not.
+
+which_gnome_screenshot=$(which gnome-screenshot)
+gnome_screenshot_exists=$?
+if [[ ${gnome_screenshot_exists} != 0 ]]; then
+
+  echo -e "\nRequired dependency gnome-screenshot does not exist. Installing…\n"
+
+  # Install gnome-screenshot.
+  sudo apt install gnome-screenshot
+fi
+
+which_image_magick=$(which magick)
+image_magick_exists=$?
+if [[ ${image_magick_exists} != 0 ]]; then
+
+  echo -e "\nRequired dependency ImageMagick 7 does not exist. Installing…\n"
+
+  # Install Image Magick.
+  bash -lic "wget -O /tmp/magick https://download.imagemagick.org/ImageMagick/download/binaries/magick && chmod +x /tmp/magick && test \$(wget -qO- https://download.imagemagick.org/ImageMagick/download/binaries/digest.rdf | grep 'rdf:about=\"magick\".*' -A6 | sed -rn 's/.*<digest:sha256>(.*?)<\/digest:sha256>/\1/p') = \$(sha256sum /tmp/magick | sed -r 's/(.*)\s(.*)/\1/') && (sudo mv /tmp/magick /usr/local/bin/ && echo 'ImageMagick 7 successfully installed.') || (rm /tmp/magick && echo 'Installation failed. Security error: message digest verification failed for ImageMagick 7 AppImage binary.')"
+fi
+
 # Configuration.
 
 # Map of languges to keyboard maps (used by setxkbmap to set the keyboard map

@@ -8,7 +8,7 @@ fi
 echo -e "\n  • Preview in AppCenter using locale ${language}"
 
 echo -e "\n  • Temporarily uncommenting icon in metadata so it displays in preview."
-sed -i 's/<!-- <icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon> -->/<icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon>/' data/comet.appdata.xml.in
+sed -i 's/<!-- <icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon> -->/<icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon>/' data/{GITHUB.APP}.appdata.xml.in
 
 echo -e "\n  • Building and installing app and AppCenter metadata."
 
@@ -18,10 +18,10 @@ task/install
 echo -e "\n  • Previewing in AppCenter. When done, exit AppCenter (do not press Ctrl+C here as we need to perform clean-up)."
 
 # Preview in the elementary OS AppCenter using the requested (or default) locale.
-LANGUAGE="${language}" io.elementary.appcenter --load-local build/org.small_tech.comet.appdata.xml
+LANGUAGE="${language}" io.elementary.appcenter --load-local build/com.github.{GITHUB.ORG}.{GITHUB.APP}.appdata.xml
 
 echo -e "\n  • Re-commenting out icon in metadata so Flatpak doesn’t complain."
 
-sed -i 's/<icon type="stock">org.small_tech.comet<\/icon>/<!-- <icon type="stock">org.small_tech.comet<\/icon> -->/' data/comet.appdata.xml.in
+sed -i 's/<icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon>/<!-- <icon type="stock">com.github.{GITHUB.ORG}.{GITHUB.APP}<\/icon> -->/' data/{GITHUB.APP}.appdata.xml.in
 
 echo -e "\nDone!"

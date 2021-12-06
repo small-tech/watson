@@ -209,23 +209,13 @@ Other important references include:
 
 ## Get the wallpaper
 
-The wallpaper you see in the screencast was commissioned for Watson from the singular [Margo de Weerdt](https://www.margodeweerdt.com/). And you’re welcome to download and use it in all its 4K glory on your own computer if you like.
-
-There are three versions: The one you see in the header has a very shallow depth of field (what the cool kids call “bokeh”) There is also one with less bokeh as well as the original illustration by Margo without any of Aral’s meddling.
-
-All three are released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please credit [Margo de Weerdt](https://www.margodeweerdt.com/) and [Watson](https://github.com/small-tech/watson) by [Small Technology Foundation](https://small-tech.org).
-
-### Original
-
 ![Illustration, Sherlock Holmes, Watson, Enola Holmes and the three cats from Catts are in a swamp full of alligators. Sherlock is standing on a makeshift wooden bridge examining a bird (one foot on an alligator’s nose). Watson is in the swamp gathering more wood for the bridge. Enola and the blue cat are in a row boat in the background. The purple and green cats are on branches.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-by-margo-de-weerdt-small-technology-foundation.jpg)
 
-### Shallower depth of field
+The wallpaper you see in the screencast was commissioned for Watson from the singular [Margo de Weerdt](https://www.margodeweerdt.com/). And you’re welcome to download and use it in all its 4K glory on your own computer if you like.
 
-![The same illustration as described in the original one, above, but with the background blurred.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-shallow-depth-of-field-by-margo-de-weerdt-small-technology-foundation.jpg)
+_(Also available [with shallower depth of field](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-shallow-depth-of-field-by-margo-de-weerdt-small-technology-foundation.jpg) – and [even shallower depth of field](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-even-shallower-depth-of-field-by-margo-de-weerdt-and-aral-balkan-small-technology-foundation.jpg) – which you might prefer if you place icons on your desktop so they don’t get lost in the detail.)_
 
-### Even shallower depth of field (did someone say bokeh?)
-
-![The same illustration as described in the shallower depth of field version, above, but with even shallower depth of field.](https://small-tech.org/downloads/watson/wallpaper/watson-wallpaper-4k-even-shallower-depth-of-field-by-margo-de-weerdt-and-aral-balkan-small-technology-foundation.jpg)
+Released under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please credit [Margo de Weerdt](https://www.margodeweerdt.com/) and [Watson](https://github.com/small-tech/watson) by [Small Technology Foundation](https://small-tech.org).
 
 ## Like this? Fund us!
 

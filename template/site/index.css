@@ -19,9 +19,6 @@
 html {
   background-color: #273445; /* elementary OS Slate 700*/
   min-width: 320px;
-  background-image: url(background.jpg);
-  background-position: 60% 75%;
-  background-blend-mode: hard-light;
   min-height: 100%;
   position: relative;
 }
@@ -163,100 +160,6 @@ h1 {
   font-size: 5em;
   margin-top: 0;
   margin-bottom: 0;
-}
-
-/* Wallpaper layer. */
-
-#wallpaper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: url(./comet-wallpaper-4k-by-margo-de-weerdt-small-technology-foundation.jpg);
-  background-position: 60% 75%;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-#wallpaperInstructions {
-  z-index: 1;
-  position: fixed;
-  width: min(90%, 420px);
-  max-width: 90%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #fafafa; /* elementary OS Silver 100 */
-  background-color: rgba(0,0,0,0.66);
-  padding: 1em;
-  border-radius: 1em;
-}
-
-#wallpaperInstructions h2 {
-  margin-top: 0;
-  font-size: 1.25em;
-  font-weight: normal;
-}
-
-#wallpaperInstructions a {
-  font-size: 1.5em;
-}
-
-#wallpaperInstructions img {
-  width: 100%;
-}
-
-#wallpaperInstructions small {
-  line-height: 1.5em;
-}
-
-button {
-  color: #fafafa; /* elementary OS Silver 100 */
-  background: transparent;
-  border: 1px solid #fafafa; /* elementary OS Silver 100 */
-  padding: 0.5em;
-  border-radius: 0.5em;
-  font-size: 1em;
-  margin-top: 1.75em;
-  margin-bottom: 0.25em;
-  margin-left: auto;
-  margin-right: auto;
-  cursor:pointer;
-  display: block;
-}
-
-@keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-@keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-}
-
-.fadeIn {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-name: fadeIn;
-  pointer-events: all !important;
-}
-
-.fadeOut {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-name: fadeOut;
-  pointer-events: none !important;
-}
-
-kbd {
-  background-color: rgba(255, 255, 255, 0.25);
-  padding: 0.25em;
-  padding-bottom: 0.1em;
-  border-radius: 0.25em;
-  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /*

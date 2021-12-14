@@ -187,7 +187,7 @@ current_step=$(( current_step + 1 ))
 
 # This is the list of files to carry out substituions in.
 # These files are all in the template/ directory.
-files=('com.github.ORG.APP.yml' 'meson.build' 'README.md' 'src/Widgets/HeaderBar.vala' 'src/Application.vala' 'src/MainWindow.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/package' 'task/preview-in-appcenter' 'task/run' 'task/run-package' 'task/take-screenshots' 'task/update-translations' '.github/workflows/main.yml' '.vscode/launch.json')
+files=('com.github.ORG.APP.yml' 'meson.build' 'README.md' 'site/com.github.ORG.APP.flatpakref' 'site/index.html' 'site/README.md' 'src/Widgets/HeaderBar.vala' 'src/Application.vala' 'src/MainWindow.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/package' 'task/preview-in-appcenter' 'task/run' 'task/run-package' 'task/take-screenshots' 'task/update-translations' '.github/workflows/main.yml' '.vscode/launch.json')
 
 # Switch to the template directory.
 pushd template
@@ -221,6 +221,7 @@ current_step=$(( current_step + 1 ))
 mv com.github.ORG.APP.yml "com.github.${github_organisation}.${github_app}.yml"
 mv data/APP.appdata.xml.in "data/${github_app}.appdata.xml.in"
 mv data/APP.desktop.in "data/${github_app}.desktop.in"
+mv site/com.github.ORG.APP.flatpakref "site/com.github.${github_organisation}.${github_app}.flatpakref"
 
 # Switch back to the main directory, move all the files in the
 # template directory to the main directory (overriding Watson’s
@@ -229,6 +230,7 @@ mv data/APP.desktop.in "data/${github_app}.desktop.in"
 # new app ready to be built in the next step.
 popd
 mv template/* .
+mv template/site .
 mv template/.vscode .
 mv template/.github .
 mv template/.editorconfig .

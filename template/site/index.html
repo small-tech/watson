@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>{APP.NAME}: {APP.DESCRIPTION}</title>
+  <!-- Don’t have the browser request the favicon. -->
+  <link rel='icon' href='data:,'>
+  <link rel='stylesheet' href='index.css'>
+</head>
+<body>
+
+<div id='content'>
+  <header>
+    <img id='icon' src='128.svg' alt='{APP.NAME} logo'>
+
+    <h1>{APP.NAME}</h1>
+
+    <p>{APP.DESCRIPTION}</p>
+  </header>
+
+  <!--
+    Progressively-enhanced carousel for screenshots.
+
+    For techniques used, see:
+
+    Super Simple Progressively Enhanced Carousel with CSS Scroll Snap (Marksu Oberlehner)
+    https://markus.oberlehner.net/blog/super-simple-progressively-enhanced-carousel-with-css-scroll-snap/
+
+    CSS-only carousel (Chris Coyier)
+    https://css-tricks.com/css-only-carousel/
+  -->
+  <section class='carousel' aria-label='Gallery'>
+    <div id='viewport'>
+      <div class='screenshot' id='screenshot1'>
+        <div class='content'>
+          <img src='https://raw.githubusercontent.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/main/screenshots/en/light-and-dark.png' />
+        </div>
+        <div class='controls'>
+          <a class='previous' href='#screenshot5'>Wrap around to last screenshot</a>
+          <a class='next' href='#screenshot2'>Go to screenshot 2</a>
+        </div>
+      </div>
+
+      <div class='screenshot' id='screenshot2'>
+        <div class='content'>
+          <img src='https://raw.githubusercontent.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/main/screenshots/en/light.png' />
+        </div>
+        <div class='controls'>
+          <a class='previous' href='#screenshot1'>Go to screenshot 1</a>
+          <a class='next' href='#screenshot3'>Go to screenshot 3</a>
+        </div>
+      </div>
+
+      <div class='screenshot' id='screenshot3'>
+        <div class='content'>
+          <img src='https://raw.githubusercontent.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/main/screenshots/en/dark.png' />
+        </div>
+        <div class='controls'>
+          <a class='previous' href='#screenshot2'>Go to screenshot 2</a>
+          <a class='next' href='#screenshot1'>Wrap around to first screenshot</a>
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <ol>
+        <li><a href='#screenshot1'>Screenshot 1</a></li>
+        <li><a href='#screenshot2'>Screenshot 2</a></li>
+        <li><a href='#screenshot3'>Screenshot 3</a></li>
+      </ol>
+    </nav>
+
+  </section>
+
+  <section id='get-it'>
+    <a id='install' class='button' href='com.github.{GITHUB.ORG}.{GITHUB.APP}.flatpakref'><img src='icons/browser-download-symbolic.svg' alt=''>Install</a>
+
+    <!--
+      Uncomment this once your app has passed review if you have submitted it for the elementary OS AppCenter.
+    -->
+    <!--
+    <a id='get-it-on-appcenter' class='button' href='https://appcenter.elementary.io/com.github.{GITHUB.ORG}.{GITHUB.APP}'><img src='icons/io.elementary.appcenter-symbolic.svg' alt=''>Get it on AppCenter</a>
+    -->
+
+    <aside>Requires <a href='https://elementary.io/'>elementary OS 6</a>.</aside>
+  </section>
+
+  <footer>
+    <ul id='links'>
+      <li><a href='https://github.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/#readme'>Help</a></li>
+      <li><a href='https://github.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/issues'>Issues</a></li>
+      <!-- <li><a href='https://small-tech.org/fund-us'>Fund</a></li> -->
+    </ul>
+    <small id='info'>Made with <a href='https://github.com/small-tech/watson'>Watson</a>.</a></small>
+    <small id='copyright'>Copyright ⓒ {COPYRIGHT.YEAR}-present {COPYRIGHT.NAME}</small>
+    <small id='license'><img src='icons/text-x-copying-symbolic.svg' alt=''>Licensed under <a href='https://www.gnu.org/licenses/gpl-3.0.en.html'>GNU GPLv3</a>.</small>
+  </footer>
+</div>
+
+<script src='index.js'></script>
+</div>
+</body>
+</html>

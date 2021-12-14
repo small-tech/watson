@@ -1,0 +1,423 @@
+@media only screen and (max-width: 580px) {
+  /* Remove margin between footer links on narrower viewports. */
+  footer li {
+    margin-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  /* Remove padding between icon and text in footer links on narrower viewports. */
+  footer li > a {
+    padding-left: 1em;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #273445; /* elementary OS Slate 700*/
+  min-width: 320px;
+  background-image: url(background.jpg);
+  background-position: 60% 75%;
+  background-blend-mode: hard-light;
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  /* If we can’t have Lato, we’ll go with the system defaults. */
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Cantarell, Ubuntu, Helvetica, Arial, sans-serif;
+}
+
+header {
+  color: #fafafa; /* elementary OS Silver 100 */
+  display: block;
+  text-align: center;
+}
+
+header p {
+  font-size: 1.5em;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: 0.25em;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.25em 0.5em;
+  padding-bottom: 0.15em; /* optical adjustment */
+  border: 1px solid #fafafa; /* elementary OS Silver 100 */
+  border-radius: 0.5em;
+  margin-top: 0.75em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.button img {
+  height: 1.25em;
+  vertical-align: top;
+  margin-right: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+aside {
+  font-style: italic;
+  margin-top: 1em;
+  font-weight: normal;
+  display: block;
+}
+
+.button:nth-of-type(2) {
+  margin-left: 0.25em;
+}
+
+footer {
+  color: #fafafa; /* elementary OS Silver 100 */
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+footer small {
+  font-size: 0.6em;
+}
+
+footer li {
+  display: inline-block;
+  margin-right: 1em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  padding: 0 0.25em;
+}
+
+footer li:last-of-type {
+  margin-right: 0;
+}
+
+footer ul {
+  padding-left: 0;
+}
+
+small {
+  display: block;
+  margin-bottom: 0.1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer li > a {
+  padding-left: 1.25em;
+  background-repeat: no-repeat;
+  background-size: 1em;
+  text-decoration: none;
+}
+
+footer li:first-of-type  > a{
+  background-image: url("icons/help-contents-symbolic.svg");
+}
+
+footer li:nth-of-type(2) > a {
+  background-image: url("icons/bug-symbolic.svg");
+}
+
+footer li:nth-of-type(3) > a {
+  background-image: url("icons/applications-graphics-symbolic.svg");
+}
+
+footer li:nth-of-type(4) > a {
+  background-image: url("icons/positive-feedback-symbolic.svg");
+}
+
+#get-it {
+  text-align: center;
+  color: #fafafa; /* elementary OS Silver 100 */
+}
+
+#license img {
+  height: 1em;
+  vertical-align: middle;
+  margin-right: 0.25em;
+}
+
+a, a:visited {
+  color: #fafafa; /* elementary OS Silver 100 */
+  text-decoration-thickness: 0.01em;
+
+}
+
+#icon {
+  margin-top: 1em;
+}
+
+h1 {
+  display: block;
+  font-size: 5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Wallpaper layer. */
+
+#wallpaper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(./comet-wallpaper-4k-by-margo-de-weerdt-small-technology-foundation.jpg);
+  background-position: 60% 75%;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#wallpaperInstructions {
+  z-index: 1;
+  position: fixed;
+  width: min(90%, 420px);
+  max-width: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fafafa; /* elementary OS Silver 100 */
+  background-color: rgba(0,0,0,0.66);
+  padding: 1em;
+  border-radius: 1em;
+}
+
+#wallpaperInstructions h2 {
+  margin-top: 0;
+  font-size: 1.25em;
+  font-weight: normal;
+}
+
+#wallpaperInstructions a {
+  font-size: 1.5em;
+}
+
+#wallpaperInstructions img {
+  width: 100%;
+}
+
+#wallpaperInstructions small {
+  line-height: 1.5em;
+}
+
+button {
+  color: #fafafa; /* elementary OS Silver 100 */
+  background: transparent;
+  border: 1px solid #fafafa; /* elementary OS Silver 100 */
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: 1em;
+  margin-top: 1.75em;
+  margin-bottom: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  cursor:pointer;
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.fadeIn {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+  pointer-events: all !important;
+}
+
+.fadeOut {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeOut;
+  pointer-events: none !important;
+}
+
+kbd {
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 0.25em;
+  padding-bottom: 0.1em;
+  border-radius: 0.25em;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/*
+  CSS-only carousel styles based on techniques from
+  https://css-tricks.com/css-only-carousel/ by Chris Coyier and
+  https://markus.oberlehner.net/blog/super-simple-progressively-enhanced-carousel-with-css-scroll-snap/ by
+  Markus Oberlehner.
+*/
+
+.carousel {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+
+#viewport {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  align-items: stretch;
+  scrollbar-width: none;
+}
+
+.screenshot {
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100%;
+  align-self: normal;
+  scroll-snap-align: start;
+}
+
+.content img {
+  max-height: 50vh;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+nav {
+  position: absolute;
+  right: 0;
+  bottom: -2em;
+  left: 0;
+  text-align: center;
+}
+
+nav a {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: rgba(0,0,0,0.5);
+  background-clip: content-box;
+  border: 0.25rem solid transparent;
+  border-radius: 50%;
+  font-size: 0;
+  transition: transform 0.1s;
+}
+
+nav a.selected {
+  outline: 0.25rem solid #fafafa; /* elementary OS Silver 100 */
+  outline-offset: -0.75rem;
+}
+
+nav a.transitioning {
+  outline: 0.25rem solid rgba(255,255,255,0.33);
+  outline-offset: -0.75rem;
+}
+
+nav ol, nav li {
+  display: inline-block;
+}
+
+nav ol {
+  padding-left: 0;
+}
+
+#viewport::before,
+#viewport::after,
+.controls a {
+  position: absolute;
+
+  /* Center vertically (50% of container - 50% of self). */
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 3rem;
+  height: 3rem;
+  background-clip: content-box;
+  border: 0.25rem solid transparent;
+  border-radius: 50%;
+
+  z-index: 1;
+  background-size: 1rem 1rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: transparent;
+  font-size: 0;
+}
+
+#viewport::before,
+.previous {
+  left: 0;
+}
+
+#viewport::after,
+.next {
+  right: 0;
+}
+
+/*
+  Here’s how the previous/next buttons work:
+
+  The actual buttons that do the work exist in every screenshot. However, if we
+  were to use just these, you’d see them slide by as you went from screenshot to
+  screenshot. That’s not ideal.
+
+  So, we create two identical “buttons” that we place above the viewport (that’s
+  the #viewport::before and #viewport::after styles you’re seeing). These are placed
+  above the actual buttons (which we set to transparent) and have their pointer
+  events set to none so that events are passed to the actual buttons.
+
+  (This is a slightly refined version of the technique in Chris’s CSS Tricks example,
+  tweaked so that the two buttons line up exactly and slightly simplified. Thanks to
+  Chris for the original technique, which is very clever.)
+*/
+
+#viewport::before,
+#viewport::after {
+  box-sizing: border-box;
+
+  content: '';
+  background-color: rgba(0,0,0,0.5);;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#viewport::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+#viewport::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}

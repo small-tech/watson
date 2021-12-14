@@ -230,7 +230,6 @@ mv site/com.github.ORG.APP.flatpakref "site/com.github.${github_organisation}.${
 # new app ready to be built in the next step.
 popd
 mv template/* .
-mv template/site .
 mv template/.vscode .
 mv template/.github .
 mv template/.editorconfig .

@@ -229,6 +229,7 @@ mv site/com.github.ORG.APP.flatpakref "site/com.github.${github_organisation}.${
 # delete the now-empty template directory, thereby leaving the
 # new app ready to be built in the next step.
 popd
+mv template/site docs
 mv template/* .
 mv template/.vscode .
 mv template/.github .

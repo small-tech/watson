@@ -129,9 +129,23 @@ If you need to pass command-line arguments to your app while testing, you can do
 
 ## Submitting the app
 
-Please make sure you [review the AppCenter publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) <strike>before [submitting the app](https://developer.elementary.io/) to the [elementary OS AppCenter](https://appcenter.elementary.io/).</strike>* before opening a pull request on the [AppCenter Reviews repository](https://github.com/elementary/appcenter-reviews).
+__Note:__ App submissions in elementary OS are currently in Beta.
 
-_\* The elementary OS AppCenter dashboard is currently broken. The version currently linked to from the elementary OS Developer site is for elementary OS 5, not 6. However, if you want to monetise your app, you still have to use that and then submit the pull request. If you know [Elixir](https://elixir-lang.org/), you might want to [contribute to finishing off the AppCenter dashboard for elementary OS 6](https://github.com/elementary/appcenter-reviews)._
+Please make sure you [review the AppCenter publishing requirements](https://docs.elementary.io/develop/appcenter/publishing-requirements) before [submitting the app](https://beta.developer.elementary.io/) to the [elementary OS AppCenter](https://appcenter.elementary.io/).
+
+If anything fails during the Beta process, you can submit your app for review manually by opening a pull request on the [AppCenter Reviews repository](https://github.com/elementary/appcenter-reviews).
+
+_\* If you know [Elixir](https://elixir-lang.org/), you might want to [contribute to improving the new AppCenter dashboard for elementary OS 6](https://github.com/elementary/appcenter-reviews). They’re looking for help._
+
+### Notes on Stripe API keys for monetised apps
+
+  - Stripe only allows one Stripe Connect connection to each Stripe account. While following the Stripe Connect flow during the app submission process, make sure you create a separate Stripe account under your organisation specifically for elementary OS.
+
+  - Do __not__ add the key that’s displayed in your Stripe account to your _appdata.xml_ file.
+
+  - __DO__ add the key you get from https://beta.developer.elementary.io/submissions/add to your _appdata.xml_ file.
+
+  - Regarding the last two points: just to make things more confusing, the first however many letters of the keys might be the same, leading you to think that the key displayed on the Stripe account _is_ the same key. Don’t fall into that trap. (If you enter the wrong key, it’s not the end of the world. Payments for your app will fail on AppCenter until you issue an update with the correct key listed in your _appdata.xml_ file.)
 
 ## It’s elementary, my dear…
 

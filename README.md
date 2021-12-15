@@ -165,6 +165,8 @@ Here’s hoping Watson will make it easier for you to start building and maintai
 
   - Task for building and running the app (with Meson/Ninja and with Flatpak), updating translations, taking localised screenshots, and previewing your app locally in the elementary OS AppCenter (with support for localisations).
 
+  <!-- - A basic web site for your app that you can publish using [GitHub pages](). -->
+
 ## What’s _not_ included?
 
 Watson creates a basic single-window elementary OS application using good practices.

@@ -92,9 +92,9 @@ echo -e "• Setting text scaling factor to 1."
 # Set the text scaling factor to ensure consistent screenshot size.
 gsettings set org.gnome.desktop.interface text-scaling-factor 1
 
-echo -e "\n╭───────────────────────────────────────────────────────────────────╮"
+echo -e "\n╭────────────────────────────────────────────────────────────────────╮"
 echo -e "│ Taking screenshots… PLEASE DO NOT TOUCH THE SYSTEM UNTIL COMPLETE. │"
-echo -e "╰───────────────────────────────────────────────────────────────────╯\n"
+echo -e "╰────────────────────────────────────────────────────────────────────╯\n"
 
 #
 # Take localised screenshots.

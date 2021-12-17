@@ -94,6 +94,22 @@ task/take-screenshots
 
 > You must push the generated screenshots folder to your GitHub repository before the screenshot will appear when you preview your app in AppCenter.
 
+#### Publish
+
+There is a simple web site for {APP.NAME} in the _docs/_ folder.
+
+If GitHub pages is enabled for the app, you can view the site at https://{GITHUB.ORG.ORIGINAL}.github.io/{GITHUB.APP.ORIGINAL}
+
+The site has an Install button that links to the Flatpak repository. People can use this button to sideload the app directly from its website.
+
+To publish this Flatpak repository, use this task:
+
+```shell
+task/publish
+```
+
+> You must push the generated Flatpak repository to your GitHub repository and enable GitHub pages (or host it elsewhere – e.g., using [Site.js](https://sitejs.org)) before people will be able install your app.
+
 #### Preview in AppCenter
 
 Launches app locally in AppCenter so you can preview how it will look when published.
@@ -103,6 +119,20 @@ Optionally, you can specify a language code (e.g., `tr_TR`) to preview a specifi
 ```shell
 task/preview-in-appcenter <language-code>
 ```
+
+### App web site
+
+There is a simple web site for {APP.NAME} in the _docs/_ folder.
+
+If GitHub pages is enabled for the app, you can view the site at https://{GITHUB.ORG.ORIGINAL}.github.io/{GITHUB.APP.ORIGINAL}
+
+You do not have to use GitHub pages to host your app’s website. You can use any web server that’s capable of serving static files. You can also use a tool like [Site.js](https://sitejs.org) as a development server to preview your site locally during development.
+
+The site has an Install button that links to the Flatpak repository. People can use this button to sideload the app directly from its website. (For more information, see the [Publish task](#publish)).
+
+If you decide to put your app on the elementary OS AppCenter you can also uncomment a “Get It On AppCenter” button that will open AppCenter at your app’s page.
+
+To see an example how you can build on and customise this base site, see the web site for [Comet](https://comet.small-web.org), which is hosted with [Site.js](https://sitejs.org).
 
 ### VSCodium
 

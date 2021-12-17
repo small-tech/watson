@@ -62,28 +62,12 @@ show_validation_error() {
 
 dryRun=false
 
-# Get the GitHub details from git itself.
-gitRemote=($(git remote -v 2> /dev/null))
+# Get the remote URL and check if it's a git directory
+gitUrl="$(git config --get remote.origin.url)" || show_error 'The current directory is not a git working copy.' --teach-how-to-use
 
-# Ensure current directory is a git working copy.
-if [ "$?" = "128" ]; then
-  show_error 'The current directory is not a git working copy.' --teach-how-to-use
-fi
-
-gitUrl=${gitRemote[1]}
-
-# This regular expression extracts the organisation
-# and app from a GitHub remote URL (works on both SSH
-# and HTTPS URLs.)
-gitUrlRegExp='.*?github\.com.(.*?)/(.*?)\.git'
-
-# Execute the regular expression.
-[[ $gitUrl =~ $gitUrlRegExp ]]
-
-# Get the GitHub organisation and app name from the
-# regular expression results.
-github_organisation_original="${BASH_REMATCH[1]}"
-github_app_original="${BASH_REMATCH[2]}"
+# Get the GitHub organisation and app name
+github_organisation_original="$(basename "$(dirname "$gitUrl")")"
+github_app_original="$(basename -s .git "$gitUrl")"
 
 # Ensure the developer hasn’t accidentally cloned
 # The Watson repository instead of creating their own

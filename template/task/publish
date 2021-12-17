@@ -9,7 +9,7 @@ echo -e "\nPublishing.\n"
 gpg_home_directory="${HOME}/.small-tech.org/watson/com.github.{GITHUB.ORG}.{GITHUB.APP}/gpg"
 
 function gpg_key_id {
-    echo "$(gpg2 --homedir=${gpg_home_directory} --list-keys --with-colons | grep "fpr.*" | sed 's/fpr//g' | sed 's/://g')"
+    echo "$(gpg2 --homedir=${gpg_home_directory} --list-keys --with-colons | grep 'fpr.*' | sed 's/fpr//g' | sed 's/://g')"
 }
 
 # Ensure GPG keys exist.
@@ -17,10 +17,13 @@ if [[ ! -d "${gpg_home_directory}/private-keys-v1.d" ]]; then
     # Update status.
     echo -e "  • GPG key does not exist; creating.\n"
 
-    # # # Ensure GPG home directory (homedir) exists.
+    # Ensure GPG home directory (homedir) exists.
     mkdir -p "${gpg_home_directory}"
 
-    # # # Create GPG key.
+    # Set the correct permissions for the home directory.
+    chmod 700 "${gpg_home_directory}"
+
+    # Create GPG key.
     gpg2 --batch --homedir gpg --passphrase '' --quick-gen-key {COPYRIGHT.EMAIL} - - never
 
     # Get the public key, in base64, with newlines stripped
@@ -28,7 +31,7 @@ if [[ ! -d "${gpg_home_directory}/private-keys-v1.d" ]]; then
     gpg_public_key_base64="$(gpg2 --homedir=${gpg_home_directory} --export $(gpg_key_id) | base64 | tr -d '\n')"
 
     # Update the .flatpakref file with the GPG public key in base64.
-    sed --in-place "s/{GPGKey}/${gpg_public_key_base64" docs/com.github.{GITHUB.ORG}.{GITHUB.APP}.flatpakref
+    sed --in-place "s/{GPGKey}/${gpg_public_key_base64}/" docs/com.github.{GITHUB.ORG}.{GITHUB.APP}.flatpakref
 fi
 
 echo -e "  • Creating Flatpak package.\n"

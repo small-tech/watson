@@ -26,7 +26,9 @@ Watson gets you up and running quickly with a bare-bones single-window elementar
 
 It also makes it equally easy for other developers to build and run your application on their own machines after they clone your project’s repository.
 
-Finally, it includes a number of scripts – to create and run Flatpak packages, update translations, and even take screenshots of your app and preview your app in AppCenter – that make the everyday tasks of working with your application easier.
+Watson includes a number of scripts – to create and run Flatpak packages, update translations, and even take screenshots of your app and preview your app in AppCenter – that make the everyday tasks of working with your application easier.
+
+Finally, Watson includes a simple web site for your app that’s automatically generated from your app’s metadata and contains a basic, progressively-enhanced and accessible carousel of your screenshots as well as a Flatpak repository for your app where people can sideload your app from. To host the generated site, you simply have to turn on GitHub Pages for your app and use the provided publish task script to publish your app and push to your GitHub repository. (You can also host your site on any static host, e.g., using [Site.js](https://sitejs.org). If you decide to put your app on the elementary OS AppCenter you can also uncomment a “Get It On AppCenter” button that will open AppCenter at your app’s page. To see an example how you can build on and customise this base site, see the web site for [Comet](https://comet.small-web.org).
 
 When deciding what to include and what to leave out of the generated app, the guiding principle is to include base functionality expected of any elementary OS 6 app. The goal is for you to only have to add to the generated template, not remove from it or change the generated code for common types of apps (with the understanding that multi-window applications and highly custom apps might require a bit of fiddling).
 

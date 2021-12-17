@@ -28,10 +28,19 @@ if [[ ! -d "${gpg_home_directory}/private-keys-v1.d" ]]; then
 
     # Get the public key, in base64, with newlines stripped
     # to include in our .flatpakref file.
-    gpg_public_key_base64="$(gpg2 --homedir=${gpg_home_directory} --export $(gpg_key_id) | base64 | tr -d '\n')"
+    gpg_public_key_base64="$(gpg2 --homedir=${gpg_home_directory} --export $(gpg_key_id) | base64 -w 0)"
 
     # Update the .flatpakref file with the GPG public key in base64.
-    sed --in-place "s/{GPGKey}/${gpg_public_key_base64}/" docs/com.github.{GITHUB.ORG}.{GITHUB.APP}.flatpakref
+    # Notice that we’re using a caret as a custom delimeter in sed instead of the
+    # forward slash as base64-encoded string can contain a forward slash and this would
+    # otherwise terminate sed’s regular expression search.
+    #
+    # Learn more:
+    #
+    #   • https://base64.guru/learn/base64-characters for more details.
+    #   • https://backreference.org/2010/02/20/using-different-delimiters-in-sed/
+    #
+    sed --in-place "s^{GPGKey}^${gpg_public_key_base64}^" docs/com.github.aral.watson_test.flatpakref
 fi
 
 echo -e "  • Creating Flatpak package.\n"

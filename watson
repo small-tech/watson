@@ -65,8 +65,11 @@ dryRun=false
 # Get the remote URL and check if it's a git directory
 gitUrl="$(git config --get remote.origin.url)" || show_error 'The current directory is not a git working copy.' --teach-how-to-use
 
-# Get the GitHub organisation and app name
+# Get the GitHub organisation name
 github_organisation_original="$(basename "$(dirname "$gitUrl")")"
+# Trim git@github.com: if using SSH instead of HTTP
+github_organisation_original=${github_organisation_original##*:}
+# Get the app (GitHub repository) name
 github_app_original="$(basename -s .git "$gitUrl")"
 
 # Ensure the developer hasn’t accidentally cloned

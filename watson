@@ -26,19 +26,19 @@
 
 # set -eu -o pipefail
 
-function show_usage {
+show_usage() {
   echo 'Usage: watson [--dryrun|-d|--help|-h]'
 }
 
-function show_error {
+show_error() {
   message=$1
   show_clone_instructions=$2
-  if [[ $show_clone_instructions == '--teach-how-to-use' ]]; then
+  if [ "$show_clone_instructions" = '--teach-how-to-use' ]; then
     show_usage
   fi
   echo ''
-  echo -e "❌ \033[41mERROR\033[0m ${message}"
-  if [[ $show_clone_instructions == '--teach-how-to-use' ]]; then
+  printf '❌ \033[41mERROR\033[0m %s\n' "$message"
+  if [ "$show_clone_instructions" = '--teach-how-to-use' ]; then
     echo ''
     echo 'To use Watson:'
     echo ''
@@ -51,12 +51,12 @@ function show_error {
   exit
 }
 
-function show_help {
+show_help() {
   show_usage
   exit
 }
 
-function show_validation_error {
+show_validation_error() {
   show_error 'All fields are required. Please re-run Watson and try again.'
 }
 
@@ -66,7 +66,7 @@ dryRun=false
 gitRemote=($(git remote -v 2> /dev/null))
 
 # Ensure current directory is a git working copy.
-if [[ "$?" == "128" ]]; then
+if [ "$?" = "128" ]; then
   show_error 'The current directory is not a git working copy.' --teach-how-to-use
 fi
 
@@ -89,11 +89,11 @@ github_app_original="${BASH_REMATCH[2]}"
 # The Watson repository instead of creating their own
 # using the “use this template” button on GitHub to
 # create their own repository based on Watson.
-if [[ "${github_organisation_original}" == "small-tech" && "${github_app_original}" == "watson" ]]; then
+if [ "${github_organisation_original}" = "small-tech" ] && [ "${github_app_original}" = "watson" ]; then
   show_error 'You currently have the original Watson repository cloned.' --teach-how-to-use
 fi
 
-function dry_run {
+dry_run() {
   dryRun=true
   echo '⧼⧼⧼⧼⧼ Dry run ⧽⧽⧽⧽⧽'
   echo ''
@@ -101,8 +101,8 @@ function dry_run {
 }
 
 # Apply flags, if any.
-[[ $1 == '--dry-run' || $1 == '-d' ]] && dry_run
-[[ $1 == '--help' || $1 == '-h' ]] && show_help
+[ "$1" = '--dry-run' ] || [ "$1" = '-d' ] && dry_run
+[ "$1" = '--help' ] || [ "$1" = '-h' ] && show_help
 
 current_step=0
 steps=('App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse responses' 'Perform substitutions' 'Rename files' 'Configure, build, and install' 'Delete self' 'Commit and push changes' 'Exit')
@@ -111,14 +111,14 @@ steps=('App Details (1/2)' 'App Details (2/2)' 'Copyright Details' 'Parse respon
 #
 # $1: Line number of error.
 # $2: Exit code of command that failed.
-function handle_error {
-  printf "Step %d (%s)" $(( ${current_step} + 1 )) "${steps[${current_step}]}"
+handle_error() {
+  printf "Step %d (%s)" $(( current_step + 1 )) "${steps[${current_step}]}"
   if (( current_step > 2 && current_step < 6 )); then
     printf " cancelled.\n"
   else
-    printf " failed on line $1.\n"
+    printf ' failed on line %s.\n' "$1"
   fi
-  exit $2
+  exit "$2"
 }
 trap 'handle_error ${LINENO} $? ' ERR
 
@@ -189,8 +189,9 @@ current_step=$(( current_step + 1 ))
 # These files are all in the template/ directory.
 files=('com.github.ORG.APP.yml' 'meson.build' 'README.md' 'site/com.github.ORG.APP.flatpakref' 'site/index.html' 'site/README.md' 'src/Widgets/HeaderBar.vala' 'src/Application.vala' 'src/MainWindow.vala' 'data/APP.appdata.xml.in' 'data/APP.desktop.in' 'data/gresource.xml' 'data/gschema.xml' 'po/POTFILES' 'task/build' 'task/install' 'task/package' 'task/preview-in-appcenter' 'task/run' 'task/run-package' 'task/take-screenshots' 'task/update-translations' '.github/workflows/main.yml' '.vscode/launch.json')
 
-# Switch to the template directory.
-pushd template
+# Switch to the template directory and work inside a subshell.
+(
+cd template || exit
 
 # Carry out substitutions in configuration files and source code.
 for file in "${files[@]}"; do
@@ -214,7 +215,6 @@ done
 git add --all
 git commit -m "Carry out template substitutions"
 
-current_step=$(( current_step + 1 ))
 
 # STEP 6: Rename files.
 
@@ -228,7 +228,9 @@ mv site/com.github.ORG.APP.flatpakref "site/com.github.${github_organisation}.${
 # own README, CHANGELOG, .gitignore, etc., in the process), and
 # delete the now-empty template directory, thereby leaving the
 # new app ready to be built in the next step.
-popd
+)
+# STEP 6 starts inside a subshell that does not preserve environment variables.
+current_step=$(( current_step + 1 ))
 mv template/site docs
 mv template/* .
 mv template/.vscode .

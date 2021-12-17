@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+#
+# Ensure GPG key exists
+#
+
+echo -e "\nPublishing.\n"
+
+gpg_home_directory="${HOME}/.small-tech.org/watson/{GITHUB.ORG}.{GITHUB.APP}/gpg"
+
+function gpg_key_id {
+    echo "$(gpg2 --homedir=${gpg_home_directory} --list-keys --with-colons | grep "fpr.*" | sed 's/fpr//g' | sed 's/://g')"
+}
+
+# Ensure GPG keys exist.
+if [[ ! -d "${gpg_home_directory}/private-keys-v1.d" ]]; then
+    # Update status.
+    echo -e "  • GPG key does not exist; creating.\n"
+
+    # # # Ensure GPG home directory (homedir) exists.
+    mkdir -p "${gpg_home_directory}"
+
+    # # # Create GPG key.
+    gpg2 --batch --homedir gpg --passphrase '' --quick-gen-key {COPYRIGHT.EMAIL} - - never
+
+    # Get the public key, in base64, with newlines stripped
+    # to include in our .flatpakref file.
+    gpg_public_key_base64="$(gpg2 --homedir=${gpg_home_directory} --export $(gpg_key_id) | base64 | tr -d '\n')"
+
+    # Create the .flatpakref file.
+    # (The odd indentation is on purpose as whitespace is significant within multiline comments.)
+    flatpakref="""[Flatpak Ref]
+Name={GITHUB.ORG}.{GITHUB.APP}
+Url=https://{GITHUB.ORG.ORIGINAL}.github.io/{GITHUB.APP.ORIGINAL}/repo
+Branch=stable
+Title={APP.NAME}
+Comment={APP.COMMENT}
+Description={APP.DESCRIPTION}
+Icon=https://raw.githubusercontent.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/main/data/128.svg
+Homepage=https://{GITHUB.ORG.ORIGINAL}.github.io/{GITHUB.APP.ORIGINAL}
+IsRuntime=false
+RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo
+GPGKey=${gpg_public_key_base64}
+"""
+    echo "${flatpakref}" > docs/{GITHUB.ORG}.{GITHUB.APP}.flatpakref
+fi
+
+echo -e "  • Creating Flatpak package.\n"
+
+task/package
+
+echo -e "\n  • Exporting repository.\n"
+
+flatpak build-export --gpg-sign="$(gpg_key_id)" --gpg-homedir="${gpg_home_directory}" docs/repo build stable
+
+echo -e "\n  • Creating static deltas.\n"
+
+flatpak build-update-repo docs/repo --gpg-sign="$(gpg_key_id)" --gpg-homedir="${gpg_home_directory}" --generate-static-deltas
+
+echo -e "\n  • Done!\n"
+echo -e "You can find the site and your latest repository in the docs/ directory.\n"

@@ -6,7 +6,7 @@
 
 echo -e "\nPublishing.\n"
 
-gpg_home_directory="${HOME}/.small-tech.org/watson/{GITHUB.ORG}.{GITHUB.APP}/gpg"
+gpg_home_directory="${HOME}/.small-tech.org/watson/com.github.{GITHUB.ORG}.{GITHUB.APP}/gpg"
 
 function gpg_key_id {
     echo "$(gpg2 --homedir=${gpg_home_directory} --list-keys --with-colons | grep "fpr.*" | sed 's/fpr//g' | sed 's/://g')"
@@ -27,22 +27,8 @@ if [[ ! -d "${gpg_home_directory}/private-keys-v1.d" ]]; then
     # to include in our .flatpakref file.
     gpg_public_key_base64="$(gpg2 --homedir=${gpg_home_directory} --export $(gpg_key_id) | base64 | tr -d '\n')"
 
-    # Create the .flatpakref file.
-    # (The odd indentation is on purpose as whitespace is significant within multiline comments.)
-    flatpakref="""[Flatpak Ref]
-Name={GITHUB.ORG}.{GITHUB.APP}
-Url=https://{GITHUB.ORG.ORIGINAL}.github.io/{GITHUB.APP.ORIGINAL}/repo
-Branch=stable
-Title={APP.NAME}
-Comment={APP.COMMENT}
-Description={APP.DESCRIPTION}
-Icon=https://raw.githubusercontent.com/{GITHUB.ORG.ORIGINAL}/{GITHUB.APP.ORIGINAL}/main/data/128.svg
-Homepage=https://{GITHUB.ORG.ORIGINAL}.github.io/{GITHUB.APP.ORIGINAL}
-IsRuntime=false
-RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo
-GPGKey=${gpg_public_key_base64}
-"""
-    echo "${flatpakref}" > docs/{GITHUB.ORG}.{GITHUB.APP}.flatpakref
+    # Update the .flatpakref file with the GPG public key in base64.
+    sed --in-place "s/{GPGKey}/${gpg_public_key_base64" docs/com.github.{GITHUB.ORG}.{GITHUB.APP}.flatpakref
 fi
 
 echo -e "  • Creating Flatpak package.\n"

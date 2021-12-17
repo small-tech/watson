@@ -24,7 +24,7 @@ if [[ ! -d "${gpg_home_directory}/private-keys-v1.d" ]]; then
     chmod 700 "${gpg_home_directory}"
 
     # Create GPG key.
-    gpg2 --batch --homedir gpg --passphrase '' --quick-gen-key {COPYRIGHT.EMAIL} - - never
+    gpg2 --batch --homedir="${gpg_home_directory}" --passphrase '' --quick-gen-key {COPYRIGHT.EMAIL} - - never
 
     # Get the public key, in base64, with newlines stripped
     # to include in our .flatpakref file.

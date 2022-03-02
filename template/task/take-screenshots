@@ -75,6 +75,10 @@ echo -e "• Backing up text scaling factor."
 # Back up the current text scaling factor so we can restore it at the end.
 initial_text_scaling_factor=$(gsettings get org.gnome.desktop.interface text-scaling-factor)
 
+# Back up the current color preference.
+initial_color_preference=$(busctl get-property org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 io.elementary.pantheon.AccountsService PrefersColorScheme)
+
+
 # Get list of localisation languages from app data.
 languages=("en")
 
@@ -182,5 +186,9 @@ done;
 echo -e "\n• Restoring initial text scaling factor."
 
 gsettings set org.gnome.desktop.interface text-scaling-factor "${initial_text_scaling_factor}"
+
+echo -e "\n* Resetoring initial color preference."
+
+busctl set-property org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 io.elementary.pantheon.AccountsService PrefersColorScheme ${initial_color_preference}
 
 echo -e "\nDone!\n\nYou can find the screenshots in the screenshots folder."
